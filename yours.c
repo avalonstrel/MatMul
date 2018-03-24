@@ -106,8 +106,11 @@ int main(int argc, char *argv[]) {
         printf("B FALSE%d\n", 0);
     double *a;
     a = (double *) malloc(n * n * sizeof(double));
-    int block_inds[] = {0, n, 0, n};    
+    int block_inds[] = {0, n, 0, n}; 
+    time_t start = clock();   
     YoursRecursive(a,A,B, n, 0, 0, 0, n);
+    time_t end = clock();
+    printf("Time %f\n", (double)(end - start)/CLOCKS_PER_SEC);
     if (check(Y, A, B, n))
         printf("R TRUE%d\n", 1);
     else
