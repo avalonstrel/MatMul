@@ -28,12 +28,12 @@ double *YoursBlocked(int n, double *A, double *B) {
             for(int i=0; i < n/block_size; i++){
                 int i_all = i*block_size;
                 for(int l=0; l < block_size; l++){
-                    int B_all_ind_ = j_all+l + k_all*n;
+                    //int B_all_ind_ =;
                     for(int t=0; t < block_size; t++){
                         sum = 0.0;
                         int A_all_ind = (i_all+t)*n + k_all;
                         int m = 0;
-                        int B_all_ind = B_all_ind_;
+                        int B_all_ind =  j_all+l + k_all*n;
                         while(m < block_size){
                             sum += A[A_all_ind] * B[B_all_ind];
                             B_all_ind += n;
