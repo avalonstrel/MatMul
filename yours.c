@@ -33,7 +33,7 @@ double *YoursBlocked(int n, double *A, double *B) {
                         sum = 0.0;
                         int A_all_ind = (i_all+t)*n + k_all;
                         int m = 0;
-                        int B_all_ind = B_all_ind_
+                        int B_all_ind = B_all_ind_;
                         while(m < block_size){
                             sum += A[A_all_ind] * B[B_all_ind];
                             B_all_ind += n;
@@ -56,12 +56,31 @@ double *YoursBlocked(int n, double *A, double *B) {
 // fill your code here, a is your output matrix
     return a;
 }
+void YoursRecursive(double* a, double *A, double *B, int n, int i, int j, int k, int stride) {
+    // fill your code here, a is your output matrix
+    if( n > 16){
+        int new_n = n/2;
+        YoursRecursive(a, A, B, new_n, i, j, k, stride);
+        YoursRecursive(a, A, B, new_n, i, j, k + new_n, stride);
+        YoursRecursive(a, A, B, new_n, i + new_n, j, k, stride);
+        YoursRecursive(a, A, B, new_n, i + new_n, j, k + new_n, stride);
+        YoursRecursive(a, A, B, new_n, i, j + new_n, k, stride);
+        YoursRecursive(a, A, B, new_n, i, j + new_n, k + new_n, stride);
+        YoursRecursive(a, A, B, new_n, i + new_n, j + new_n, k, stride);
+        YoursRecursive(a, A, B, new_n, i + new_n, j + new_n, k + new_n, stride);
+    }else{
+        double sum = 0.0;
+        for(int i_ = i; i_ < i + n ; i_++){
+            for(int j_ = j; j_ < j + n; j_++){
+                sum = 0.0;
+                for(int k_ = k; k_ < k + n; k_++){
+                    sum += A[i_*stride + k_] * B[k_*stride + j_];
+                }
+                a[i_*stride + j_] += sum;
+            }
+        }
+    }
 
-double *YoursRecursive(int n, double *A, double *B) {
-    double *a;
-    a = (double *) malloc(n * n * sizeof(double));
-// fill your code here, a is your output matrix
-    return a;
 }
 
 int main(int argc, char *argv[]) {
@@ -85,8 +104,10 @@ int main(int argc, char *argv[]) {
         printf("B TRUE%d\n", 1);
     else
         printf("B FALSE%d\n", 0);
-
-    Y = YoursRecursive(n,A,B);
+    double *a;
+    a = (double *) malloc(n * n * sizeof(double));
+    int block_inds[] = {0, n, 0, n};    
+    YoursRecursive(a,A,B, n, 0, 0, 0, n);
     if (check(Y, A, B, n))
         printf("R TRUE%d\n", 1);
     else
