@@ -367,7 +367,7 @@ double *PadMat(double *A, int n, int pad){
 }
 double *YoursStrassenRecursive(int n, double *A, double *B, int b){
     double *a;
-    int padLen = getPadLen(n, BLOCK_SIZE);
+    int padLen = getPadLen(n, b);
     a = InitMatrix(padLen);
     double *padA = PadMat(A, n, padLen-n);
     double *padB = PadMat(B, n, padLen-n);
