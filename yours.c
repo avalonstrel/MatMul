@@ -219,6 +219,7 @@ void StrassenRecursive(double *a, double* A, double*B, int n, int i_A, int j_A, 
         double sum = 0.0;
         int i_stride = (i_A)*A_stride;
         int k_stride = (i_B )*B_stride;
+        int o_stride = 0;
         for(int i = 0; i < n ; i++){
             for(int j = 0; j < n; j++){
                 sum = 0.0;
@@ -229,10 +230,10 @@ void StrassenRecursive(double *a, double* A, double*B, int n, int i_A, int j_A, 
                     sum += A[i_stride + j_A + k] * B[k_stride + j_B + j];
                     k_stride += B_stride;
                 }
-                a[i*O_stride + j] += sum;
+                a[o_stride + j] += sum;
             }
             i_stride += A_stride;
-
+            o_stride += O_stride;
         }
     }
 }
