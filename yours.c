@@ -346,10 +346,11 @@ double *YoursStrassenRecursive(int n, double *A, double *B){
     a = InitMatrix(padLen);
     double *padA = PadMat(A, n, padLen-n);
     double *padB = PadMat(B, n, padLen-n);
+    printf("pad %d", padLen);
+
     time_t start = clock();
     
-    //printf("pad %d", padLen);
-    
+
 
     StrassenRecursiveImpl(a, padA, padB, padLen,  0, 0, 0, 0, padLen, padLen, padLen);
     double *r = InitMatrix(n);
