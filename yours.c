@@ -17,10 +17,7 @@
 double *YoursBlocked(int n, double *A, double *B) {
     double *a;
     a = (double *) malloc(n * n * sizeof(double));
-    printf("a:");
-    for(int i=0;i<n*n;i++){
-        printf("%f ",a[i]);
-    }    
+
     time_t start = clock();
 
     unsigned int block_size = 32;
@@ -221,7 +218,7 @@ void StrassenRecursive(double *a, double* A, double*B, int n, int i_A, int j_A, 
 
 void YoursRecursive(double* a, double *A, double *B, int n, int i, int j, int k, int stride) {
     // fill your code here, a is your output matrix
-    if( n > 2){
+    if( n > 16){
         int new_n = n/2;
         YoursRecursive(a, A, B, new_n, i, j, k, stride);
         YoursRecursive(a, A, B, new_n, i, j, k + new_n, stride);
@@ -282,21 +279,14 @@ int main(int argc, char *argv[]) {
         printf("B FALSE%d\n", 0);
     double *a;
     a = (double *) malloc(n * n * sizeof(double));
-    //double* a = (double *) malloc(n * n * sizeof(double));
-    //int block_inds[] = {0, n, 0, n};
-    //Y = generate(n);
-    printf("a");
+
     for(int i=0;i<n*n;i++){
-        printf("%f ",a[i]);
         a[i]=0.0;
     }
     time_t start = clock();   
     YoursRecursive(a , A, B, n, 0, 0, 0, n);
     time_t end = clock();
-    for(int i=0;i<n*n;i++){
-        printf("%f ",a[i]);
-    }
-    printf("\n");
+
     printf("Time %f\n", (double)(end - start)/CLOCKS_PER_SEC);
     if (check(a, A, B, n))
         printf("R TRUE%d\n", 1);
