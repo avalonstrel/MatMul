@@ -172,7 +172,7 @@ double * InitMatrix(int n){
     return p;
 }
 void StrassenRecursive(double *a, double* A, double*B, int n, int i_A, int j_A, int i_B, int j_B, int A_stride, int B_stride, int O_stride){
-    if(n > 2){
+    if(n > 16){
         int new_n = n/2;
         double *p1_v = InitMatrix(new_n);
 
