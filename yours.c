@@ -18,7 +18,11 @@ double *YoursBlocked(int n, double *A, double *B) {
     double *a;
     a = (double *) malloc(n * n * sizeof(double));
     time_t start = clock();
+
     unsigned int block_size = 32;
+    if(n < block_size){
+        block_size = n;
+    }
     double sum = 0.0;
 
     for(int j=0; j < n/block_size; j++){
@@ -233,7 +237,7 @@ void YoursRecursive(double* a, double *A, double *B, int n, int i, int j, int k,
                 sum = 0.0;
                 for(int k_ = k; k_ < k + n; k_++){
                     sum += A[i_stride + k_] * B[k_*stride + j_];
-                    
+                    printf("i,j,k:%d,%d,%d",i_,j_,k_)
                 }
                 //printf("i_stride+j_: %d ; %d \n", i_stride + j_ ,32*32);
                 a[i_stride + j_] += sum;
