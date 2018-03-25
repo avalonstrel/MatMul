@@ -6,7 +6,7 @@
 #include "time.h"
 
 
-#define BLOCK_SIZE 2
+#define BLOCK_SIZE 4
 
 //these are the implemented methods in 'handout.o' :
 
@@ -141,8 +141,6 @@ void p1(double *p1, double *A, double *B, int n, int i_A, int j_A, int i_B, int 
     }
     StrassenRecursiveImpl(p1, A, tmp, n,  i_A, j_A, 0, 0, A_stride, n, n);
     
-
-    
 }
 
 void p2(double *p2, double *A, double *B, int n,  int i_A, int j_A, int i_B, int j_B,  int A_stride, int B_stride){
@@ -170,7 +168,6 @@ void p4(double *p4, double *A, double *B, int n,  int i_A, int j_A, int i_B, int
 
     for(int i=0; i < n; i++){
         for(int j=0; j < n; j++){
-            //e = i < true_n && j < true_n ? B[(i_B+i)*B_stride+j_B+j]:0;
             tmp[i*n+j] = B[(i_B+n+i)*B_stride+j_B+j] - B[(i_B+i)*B_stride+j_B+j];
         }
     }
@@ -206,7 +203,6 @@ void p6(double *p6, double *A, double *B, int n,  int i_A, int j_A, int i_B, int
         }
     }
     double * tmp2 = InitMatrix(n);
-    double g,h;
     for(int i=0; i < n; i++){
         for(int j=0; j < n; j++){
 
