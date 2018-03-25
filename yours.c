@@ -280,7 +280,8 @@ int main(int argc, char *argv[]) {
         printf("B TRUE%d\n", 1);
     else
         printf("B FALSE%d\n", 0);
-    double *a = (double *) malloc(n * n * sizeof(double));
+    double *a;
+    a = (double *) malloc(n * n * sizeof(double));
     //double* a = (double *) malloc(n * n * sizeof(double));
     //int block_inds[] = {0, n, 0, n};
     //Y = generate(n);
