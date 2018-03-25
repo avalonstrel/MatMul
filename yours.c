@@ -306,7 +306,7 @@ double *YoursStrassenRecursive(int n, double *A, double *B){
     a = InitMatrix(n);
     time_t start = clock();
     int pad = (n+1)/2 - n/2;
-    StrassenRecursiveImpl(a, A, B, n, pad, pad, 0, 0, 0, 0, 0, n, n, n);
+    StrassenRecursiveImpl(a, A, B, n, pad, pad, 0, 0, 0, 0, 0, 0, n, n, n);
     time_t end = clock();
     printf("Time %f\n", (double)(end - start)/CLOCKS_PER_SEC);
     return a;    
