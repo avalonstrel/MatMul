@@ -286,8 +286,7 @@ void StrassenRecursiveImpl(double *O, double* A, double*B, int n, int pad_i_A, i
         p6(p6_v, A, B, new_n, pad, i_A, j_A, i_B, j_B, A_stride, B_stride);
         double *p7_v = InitMatrix(new_n);
         p7(p7_v, A, B, new_n, pad, i_A, j_A, i_B, j_B, A_stride, B_stride);
-        printMat(p1_v, new_n);
-        printMat(p2_v, new_n);
+
         MatAdd2(O, p5_v, new_n, new_n, 0, 0, 0, 0, O_stride, new_n);
         MatAdd2(O, p4_v, new_n, new_n, 0, 0, 0, 0, O_stride, new_n);
         MatAdd2(O, p6_v, new_n, new_n, 0, 0, 0, 0, O_stride, new_n);
@@ -300,6 +299,7 @@ void StrassenRecursiveImpl(double *O, double* A, double*B, int n, int pad_i_A, i
         MatAdd2(O, p1_v, new_n-pad, new_n-pad, new_n, new_n, 0, 0, O_stride, new_n);
         MatSub2(O, p3_v, new_n-pad, new_n-pad, new_n, new_n, 0, 0, O_stride, new_n);
         MatSub2(O, p7_v, new_n-pad, new_n-pad, new_n, new_n, 0, 0, O_stride, new_n);
+        printMat(O, n);
         // MatAdd(O, p5_v, new_n,  0, 0, 0, 0, O_stride, new_n);
         // MatAdd(O, p4_v, new_n,  0, 0, 0, 0, O_stride, new_n);
         // MatAdd(O, p6_v, new_n,  0, 0, 0, 0, O_stride, new_n);
