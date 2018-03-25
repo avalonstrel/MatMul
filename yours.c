@@ -222,6 +222,7 @@ void StrassenRecursive(double *a, double* A, double*B, int n, int i_A, int j_A, 
         for(int i = 0; i < n ; i++){
             for(int j = 0; j < n; j++){
                 sum = 0.0;
+                k_stride = (i_B )*B_stride;
                 for(int k = 0; k < n; k++){
                     //sum += A[(i_A+i)*A_stride + j_A + k] * B[(k + i_B )*B_stride + j_B + j];
                     //printf("i,j,k,l:%d,%d,%d,%d", i_A+i, j_A+k, k+i_B, j_B+j);
