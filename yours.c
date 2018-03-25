@@ -177,22 +177,27 @@ void StrassenRecursive(double *a, double* A, double*B, int n, int i_A, int j_A, 
 
         p1(p1_v, A, B, n, i_A, j_A, i_B, j_B, A_stride, B_stride);
 
-        double *p2_v = (double *) malloc(n * n * sizeof(double));
+        double *p2_v = InitMatrix(n);
         printf("p2\n");
         for(int i=0;i<n*n;i++){
             printf("%f ",p2_v[i] );
         }
         printf("\n");
         p2(p2_v, A, B, n, i_A, j_A, i_B, j_B, A_stride, B_stride);
-        double *p3_v = (double *) malloc(n * n * sizeof(double));
+        printf("p2 after\n");
+        for(int i=0;i<n*n;i++){
+            printf("%f ",p2_v[i] );
+        }
+        printf("\n");
+        double *p3_v = InitMatrix(n);
         p3(p3_v, A, B, n, i_A, j_A, i_B, j_B, A_stride, B_stride);
-        double *p4_v = (double *) malloc(n * n * sizeof(double));
+        double *p4_v = InitMatrix(n);
         p4(p4_v, A, B, n, i_A, j_A, i_B, j_B, A_stride, B_stride);
-        double *p5_v = (double *) malloc(n * n * sizeof(double));
+        double *p5_v = InitMatrix(n);
         p5(p5_v, A, B, n, i_A, j_A, i_B, j_B, A_stride, B_stride);
-        double *p6_v = (double *) malloc(n * n * sizeof(double));
+        double *p6_v = InitMatrix(n);
         p6(p6_v, A, B, n, i_A, j_A, i_B, j_B, A_stride, B_stride);
-        double *p7_v = (double *) malloc(n * n * sizeof(double));
+        double *p7_v = InitMatrix(n);
         p7(p7_v, A, B, n, i_A, j_A, i_B, j_B, A_stride, B_stride);
         MatAdd(a, p5_v, n, 0, 0, 0, 0, O_stride, n);
         MatAdd(a, p4_v, n, 0, 0, 0, 0, O_stride, n);
