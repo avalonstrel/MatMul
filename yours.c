@@ -56,13 +56,13 @@ double *YoursBlocked(int n, double *A, double *B) {
     int k_block_num = (n)/k_block_size + 1;
     int left_size = n - (j_block_num - 1) * BLOCK_SIZE;
     for(int j=0; j < j_block_num; j++){
-        int j_all = j*BLOCK_SIZE;
+        int j_all = j*j_block_size;
         j_block_size = j < j_block_num - 1 ? BLOCK_SIZE :left_size;
         for(int k=0; k < k_block_num; k++){
-            int k_all = k*BLOCK_SIZE;
+            int k_all = k*k_block_size;
             k_block_size = k < k_block_num - 1 ? BLOCK_SIZE :left_size;
             for(int i=0; i < i_block_num; i++){
-                int i_all = i*BLOCK_SIZE;
+                int i_all = i*i_block_size;
                 i_block_size = i < i_block_num - 1 ? BLOCK_SIZE :left_size;
                 for(int l=0; l < j_block_size; l++){
                     int B_all_ind_ = j_all+l + k_all*n;
