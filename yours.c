@@ -357,7 +357,7 @@ int main(int argc, char *argv[]) {
     Y = (double *) malloc(n * n * sizeof(double));
     Y = generate(n);
     Y = Naive(n,A,B);
-    printf("sr\n");
+    printf("N\n");
     for(int i=0; i<n*n ;i++){
         printf("%f ", Y[i]);
     }
@@ -368,7 +368,11 @@ int main(int argc, char *argv[]) {
         printf("N FALSE%d\n", 0);
 
     Y = YoursBlocked(n,A,B);
-
+    printf("B\n");
+    for(int i=0; i<n*n ;i++){
+        printf("%f ", Y[i]);
+    }
+    printf("\n");
     if (check(Y, A, B, n))
         printf("B TRUE%d\n", 1);
     else
