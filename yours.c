@@ -60,10 +60,10 @@ double *YoursBlocked(int n, double *A, double *B) {
         j_block_size = j < j_block_num - 1 ? BLOCK_SIZE :left_size;
         for(int k=0; k < k_block_num; k++){
             int k_all = k*BLOCK_SIZE;
-            j_block_size = j < j_block_num - 1 ? BLOCK_SIZE :left_size;
+            k_block_size = k < k_block_num - 1 ? BLOCK_SIZE :left_size;
             for(int i=0; i < i_block_num; i++){
                 int i_all = i*BLOCK_SIZE;
-                j_block_size = j < j_block_num - 1 ? BLOCK_SIZE :left_size;
+                i_block_size = i < i_block_num - 1 ? BLOCK_SIZE :left_size;
                 for(int l=0; l < j_block_size; l++){
                     int B_all_ind_ = j_all+l + k_all*n;
                     for(int t=0; t < i_block_size; t++){
