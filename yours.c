@@ -61,17 +61,7 @@ double *YoursBlocked(int n, double *A, double *B) {
 // fill your code here, a is your output matrix
     return a;
 }
-void setSubMatrix(double *p, double *A, int n, int i, int j, int stride){
-    int i_n = 0;
-    int i_stride = i*stride;
-    for(int i_=i; i_ < i + n; i_++){
-        i_n += n;
-        i_stride += stride;
-        for(int j_=j; j_ < j + n; j_++){
-            p[i_n+j_] = A[i_stride+j_];
-        }
-    }
-}
+
 void StrassenRecursive(double *a, double* A, double*B, int n, int i_A, int j_A, int i_B, int j_B, int A_stride, int B_stride, int O_stride);
 //n n/2 
 void p1(double *p1, double *A, double *B, int n, int i_A, int j_A, int i_B, int j_B,  int A_stride, int B_stride){
@@ -172,10 +162,17 @@ void MatSub(double* A, double *B, int n, int i_A, int j_A, int i_B, int j_B, int
         }
     }
 }
+
 void StrassenRecursive(double *a, double* A, double*B, int n, int i_A, int j_A, int i_B, int j_B, int A_stride, int B_stride, int O_stride){
     if(n > 2){
         double *p1_v = (double *) malloc(n * n * sizeof(double));
+
         p1(p1_v, A, B, n, i_A, j_A, i_B, j_B, A_stride, B_stride);
+        printf("p1\n");
+        for(int i=0;i<n*n;i++){
+            printf("%f ",p1_v[i] );
+        }
+        printf("\n");
         double *p2_v = (double *) malloc(n * n * sizeof(double));
         p2(p2_v, A, B, n, i_A, j_A, i_B, j_B, A_stride, B_stride);
         double *p3_v = (double *) malloc(n * n * sizeof(double));
