@@ -263,7 +263,7 @@ int main(int argc, char *argv[]) {
     Y = generate(n);
     Y = YoursBlocked(n,A,B);
     for(int i=0;i<n*n;i++){
-        printf("%f",Y[i]);
+        printf("%f ",Y[i]);
     }
 //    Y = Mult(A, B, n);
 //    printf("Y\n");
@@ -280,7 +280,7 @@ int main(int argc, char *argv[]) {
     YoursRecursive(Y , A, B, n, 0, 0, 0, n);
     time_t end = clock();
     for(int i=0;i<n*n;i++){
-        printf("%f",Y[i]);
+        printf("%f ",Y[i]);
     }
     printf("Time %f\n", (double)(end - start)/CLOCKS_PER_SEC);
     if (check(Y, A, B, n))
