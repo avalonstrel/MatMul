@@ -54,7 +54,7 @@ double *YoursBlocked(int n, double *A, double *B) {
     int i_block_num = (n)/i_block_size + 1;
     int j_block_num = (n)/j_block_size + 1;
     int k_block_num = (n)/k_block_size + 1;
-    int left_size = n - (j_block_num - 1) * j_block_size;
+    int left_size = n - (j_block_num - 1) * BLOCK_SIZE;
     for(int j=0; j < j_block_num; j++){
         int j_all = j*BLOCK_SIZE;
         j_block_size = BLOCK_SIZE ? j != j_block_num - 1:left_size;
