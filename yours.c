@@ -291,7 +291,7 @@ void StrassenRecursiveImpl(double *O, double* A, double*B, int n, int pad_i, int
                     k_stride += B_stride;
                 }
                 
-                    O[o_stride + j] += sum;
+                O[o_stride + j] += sum;
             }
             i_stride += A_stride;
             o_stride += O_stride;
@@ -360,9 +360,12 @@ int main(int argc, char *argv[]) {
     Y = generate(n);
     Y = Naive(n,A,B);
     printf("N\n");
-    for(int i=0; i<n*n ;i++){
-        printf("%f ", Y[i]);
+    for(int i=0; i<n ;i++){
+        printf("\n");
+        for(int j=0; j<n; j++)
+        printf("%f ", Y[i*n+j]);
     }
+    printf("\n");
     printf("\n");
     if (check(Y, A, B, n))
         printf("N TRUE%d\n", 1);
@@ -384,8 +387,10 @@ int main(int argc, char *argv[]) {
 
     Y = YoursStrassenRecursive(n, A, B);
     printf("sr\n");
-    for(int i=0; i<n*n ;i++){
-        printf("%f ", Y[i]);
+    for(int i=0; i<n ;i++){
+        printf("\n");
+        for(int j=0; j<n; j++)
+        printf("%f ", Y[i*n+j]);
     }
     printf("\n");
     if (check(Y, A, B, n))
