@@ -359,13 +359,25 @@ void StrassenRecursiveImpl(double *O, double* A, double*B, int n, int pad_i_A, i
         }
     }
 }
+double *PadMat(double *A, int n, int pad){
+    double * r = InitMatrix(n+pad);
+    for(int i=0; i < n; i++){
+        for(int j=0; j < n; j++){
+            r[i*(n+pad)+j] = A[i*n+j];
+        }
+    }
+    return r;
+}
 double *YoursStrassenRecursive(int n, double *A, double *B){
     double *a;
     
     time_t start = clock();
     int pad = getPadLen(n, BLOCK_SIZE);
+    printf("pad %d", pad);
     a = InitMatrix(n+pad);
-    StrassenRecursiveImpl(a, A, B, n+pad, pad, pad, pad, pad, 0, 0, 0, 0, n, n, n+pad);
+    A = PadMat(A, n, pad);
+    B = PadMat(B, n, pad);
+    StrassenRecursiveImpl(a, A, B, n+pad, 0, 0, 0, 0, 0, 0, 0, 0, n+pad, n+pad, n+pad);
     double *r = InitMatrix(n);
     for(int i=0;i<n;i++){
         for(int j=0;j <n;j++){
