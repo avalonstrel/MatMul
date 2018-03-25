@@ -6,6 +6,7 @@
 
 
 #define BLOCK_SIZE 64
+
 //these are the implemented methods in 'handout.o' :
 
 //double *generate(int n)
@@ -222,7 +223,7 @@ void StrassenRecursiveImpl(double *a, double* A, double*B, int n, int i_A, int j
 }
 double *YoursStrassenRecursive(int n, double *A, double *B){
     double *a;
-    a = (double *) malloc(n * n * sizeof(double));
+    a = InitMatrix(n);
     time_t start = clock();
     StrassenRecursiveImpl(a, A,B, n, 0, 0, 0, 0, n, n, n);
     time_t end = clock();
