@@ -268,7 +268,7 @@ int main(int argc, char *argv[]) {
     Y = (double *) malloc(n * n * sizeof(double));
     //double* a = (double *) malloc(n * n * sizeof(double));
     //int block_inds[] = {0, n, 0, n};
-
+    Y = generate(n);
     time_t start = clock();   
     YoursRecursive(Y , A, B, n, 0, 0, 0, n);
     time_t end = clock();
