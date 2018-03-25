@@ -53,27 +53,16 @@ double *YoursBlocked(int n, double *A, double *B) {
     int i_block_num = (n)/i_block_size + 1;
     int j_block_num = (n)/j_block_size + 1;
     int k_block_num = (n)/k_block_size + 1;
+    int left_size = n - (j_block_num - 1) * j_block_size;
     for(int j=0; j < j_block_num; j++){
-        int j_all = j*j_block_size;
-        if(j > j_block_num-2){
-            j_block_size = n - (j_block_num - 1) * j_block_size;
-        }else{
-            j_block_size = BLOCK_SIZE;
-        }
+        int j_all = j*BLOCK_SIZE;
+        j_block_size = BLOCK_SIZE ? j == j_block_num - 1:left_size;
         for(int k=0; k < k_block_num; k++){
-            int k_all = k*k_block_size;
-            if(k > k_block_num-2){
-                k_block_size = n - (k_block_num - 1) * k_block_size;
-            }else{
-                k_block_size = BLOCK_SIZE;
-            }
+            int k_all = k*BLOCK_SIZE;
+            k_block_size = BLOCK_SIZE ? k == k_block_num - 1:left_size; 
             for(int i=0; i < i_block_num; i++){
-                int i_all = i*i_block_size;
-                if(i > i_block_num-2){
-                    i_block_size = n - (i_block_num - 1 ) * i_block_size;
-                }else{
-                    i_block_size = BLOCK_SIZE;
-                }
+                int i_all = i*BLOCK_SIZE;
+                i_block_size = BLOCK_SIZE ? i == i_block_num - 1:left_size;
                 for(int l=0; l < j_block_size; l++){
                     int B_all_ind_ = j_all+l + k_all*n;
                     for(int t=0; t < i_block_size; t++){
