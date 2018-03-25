@@ -286,6 +286,21 @@ int main(int argc, char *argv[]) {
     else
         printf("R FALSE%d\n", 0);
 
+
+    a = (double *) malloc(n * n * sizeof(double));
+
+    for(int i=0;i<n*n;i++){
+        a[i]=0.0;
+    }
+    start = clock();   
+    StrassenRecursive(Y, A,B, n/2, 0, 0, 0, 0, n, n, n);
+    end = clock();
+
+    printf("Time %f\n", (double)(end - start)/CLOCKS_PER_SEC);
+    if (check(a, A, B, n))
+        printf("SR TRUE%d\n", 1);
+    else
+        printf("SR FALSE%d\n", 0);
     // Y = (double *) malloc(n * n * sizeof(double));
     
     // start = clock();   
