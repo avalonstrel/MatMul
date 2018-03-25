@@ -279,7 +279,11 @@ int main(int argc, char *argv[]) {
     time_t start = clock();   
     YoursRecursive(a , A, B, n, 0, 0, 0, n);
     time_t end = clock();
-
+    printf("R\n");
+    for(int i=0;i<n*n;i++){
+        printf("%f\n",a[i] );
+    }
+    printf("\n");
     printf("Time %f\n", (double)(end - start)/CLOCKS_PER_SEC);
     if (check(a, A, B, n))
         printf("R TRUE%d\n", 1);
@@ -295,7 +299,11 @@ int main(int argc, char *argv[]) {
     start = clock();   
     StrassenRecursive(a, A,B, n/2, 0, 0, 0, 0, n, n, n);
     end = clock();
-
+    printf("SR\n");
+    for(int i=0;i<n*n;i++){
+        printf("%f\n",a[i] );
+    }
+    printf("\n");
     printf("Time %f\n", (double)(end - start)/CLOCKS_PER_SEC);
     if (check(a, A, B, n))
         printf("SR TRUE%d\n", 1);
