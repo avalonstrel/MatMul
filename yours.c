@@ -412,12 +412,7 @@ int main(int argc, char *argv[]) {
     Y = (double *) malloc(n * n * sizeof(double));
     Y = generate(n);
     Y = Naive(n,A,B);
-    printf("N\n");
-    for(int i=0; i<n ;i++){
-        printf("\n");
-        for(int j=0; j<n; j++)
-        printf("%5f ", Y[i*n+j]);
-    }
+
     printf("\n");
     printf("\n");
     if (check(Y, A, B, n))
@@ -432,20 +427,14 @@ int main(int argc, char *argv[]) {
     else
         printf("B FALSE%d\n", 0);
 
-    Y = YoursRecursive(n, A, B);
-    if (check(Y, A, B, n))
-        printf("R TRUE%d\n", 1);
-    else
-        printf("R FALSE%d\n", 0);
+    // Y = YoursRecursive(n, A, B);
+    // if (check(Y, A, B, n))
+    //     printf("R TRUE%d\n", 1);
+    // else
+    //     printf("R FALSE%d\n", 0);
 
     Y = YoursStrassenRecursive(n, A, B);
-    printf("sr\n");
-    for(int i=0; i<n ;i++){
-        printf("\n");
-        for(int j=0; j<n; j++)
-        printf("%5f ", Y[i*n+j]);
-    }
-    printf("\n");
+
     if (check(Y, A, B, n))
         printf("SR TRUE%d\n", 1);
     else
