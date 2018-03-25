@@ -5,7 +5,7 @@
 #include "time.h"
 
 
-#define BLOCK_SIZE 16
+#define BLOCK_SIZE 32
 
 //these are the implemented methods in 'handout.o' :
 
@@ -41,27 +41,47 @@ double *YoursBlocked(int n, double *A, double *B) {
     a = (double *) malloc(n * n * sizeof(double));
 
     time_t start = clock();
-    unsigned int block_size = BLOCK_SIZE;
-    
-    if(n < block_size){
-        block_size = n;
+    unsigned int i_block_size = BLOCK_SIZE;
+    unsigned int j_block_size = BLOCK_SIZE;
+    unsigned int k_block_size = BLOCK_SIZE;
+    if(n < i_block_size){
+        i_block_size = n;
+        j_block_size = n;
+        k_block_size = n;
     }
     double sum = 0.0;
-
-    for(int j=0; j < n/block_size; j++){
-        int j_all = j*block_size;
-        for(int k=0; k < n/block_size; k++){
-            int k_all = k*block_size;
-            for(int i=0; i < n/block_size; i++){
-                int i_all = i*block_size;
-                for(int l=0; l < block_size; l++){
+    int i_block_num = (n+i_block_size-1)/i_block_size;
+    int j_block_num = (n+j_block_size-1)/j_block_size;
+    int k_block_num = (n+k_block_size-1)/k_block_size;
+    for(int j=0; j < j_block_num; j++){
+        int j_all = j*j_block_size;
+        if(j > j_block_num-2){
+            j_block_size = n - j_block_num * j_block_size;
+        }else{
+            j_block_size = BLOCK_SIZE;
+        }
+        for(int k=0; k < k_block_num; k++){
+            int k_all = k*k_block_size;
+            if(k > k_block_num-2){
+                k_block_size = n - k_block_num * k_block_size;
+            }else{
+                k_block_size = BLOCK_SIZE;
+            }
+            for(int i=0; i < i_block_num; i++){
+                int i_all = i*i_block_size;
+                if(i > i_block_num-2){
+                    i_block_size = n - i_block_num * i_block_size;
+                }else{
+                    i_block_size = BLOCK_SIZE;
+                }
+                for(int l=0; l < j_block_size; l++){
                     int B_all_ind_ = j_all+l + k_all*n;
-                    for(int t=0; t < block_size; t++){
+                    for(int t=0; t < i_block_size; t++){
                         sum = 0.0;
                         int A_all_ind = (i_all+t)*n + k_all;
                         int m = 0;
                         int B_all_ind =  B_all_ind_;
-                        while(m < block_size){
+                        while(m < k_block_size){
                             sum += A[A_all_ind] * B[B_all_ind];
                             B_all_ind += n;
                             A_all_ind += 1;
