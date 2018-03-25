@@ -6,7 +6,7 @@
 #include "time.h"
 
 
-#define BLOCK_SIZE 2
+#define BLOCK_SIZE 4
 
 //these are the implemented methods in 'handout.o' :
 
