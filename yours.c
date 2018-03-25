@@ -199,8 +199,8 @@ void StrassenRecursive(double *a, double* A, double*B, int n, int i_A, int j_A, 
         MatAdd(a, p4_v, n, n, 0, 0, 0, O_stride, n);
         MatAdd(a, p5_v, n, n, n, 0, 0, O_stride, n);
         MatAdd(a, p1_v, n, n, n, 0, 0, O_stride, n);
-        MatAdd(a, p3_v, n, n, n, 0, 0, O_stride, n);
-        MatAdd(a, p7_v, n, n, n, 0, 0, O_stride, n);
+        MatSub(a, p3_v, n, n, n, 0, 0, O_stride, n);
+        MatSub(a, p7_v, n, n, n, 0, 0, O_stride, n);
     }else{
         double sum = 0.0;
         for(int i = 0; i < n ; i++){
