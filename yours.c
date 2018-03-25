@@ -246,19 +246,28 @@ void YoursRecursive(double* a, double *A, double *B, int n, int i, int j, int k,
     }else{
         double sum = 0.0;
         int i_stride = i*stride;
-
+        // for(int i_ = i; i_ < i + n ; i_++){
+            
+        //     for(int j_ = j; j_ < j + n; j_++){
+        //         sum = 0.0;
+        //         for(int k_ = k; k_ < k + n; k_++){
+        //             sum += A[i_stride + k_] * B[k_*stride + j_];
+        //             //printf("i,j,k:%d,%d,%d",i_,j_,k_);
+        //         }
+        //         //printf("i_stride+j_: %d ; %d \n", i_stride + j_ ,32*32);
+        //         a[i_stride + j_] += sum;
+        //     }
+        //     i_stride += stride;
+        // }
         for(int i_ = i; i_ < i + n ; i_++){
-            sum = 0.0;
             for(int k_ = k; k_ < k + n; k_++){
                 for(int j_ = j; j_ < j + n; j_++){
                 
                 
-                    sum += A[i_stride + k_] * B[k_*stride + j_];
-                    a[i_stride + j_] += sum;
+                    a[i_stride +j_] += A[i_stride + k_] * B[k_*stride + j_];
                     //printf("i,j,k:%d,%d,%d",i_,j_,k_);
                 }
                 //printf("i_stride+j_: %d ; %d \n", i_stride + j_ ,32*32);
-                
             }
             i_stride += stride;
         }
