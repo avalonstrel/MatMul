@@ -50,9 +50,9 @@ double *YoursBlocked(int n, double *A, double *B) {
         k_block_size = n;
     }
     double sum = 0.0;
-    int i_block_num = (n+i_block_size-1)/i_block_size;
-    int j_block_num = (n+j_block_size-1)/j_block_size;
-    int k_block_num = (n+k_block_size-1)/k_block_size;
+    int i_block_num = (n)/i_block_size + 1;
+    int j_block_num = (n)/j_block_size + 1;
+    int k_block_num = (n)/k_block_size + 1;
     for(int j=0; j < j_block_num; j++){
         int j_all = j*j_block_size;
         if(j > j_block_num-2){
