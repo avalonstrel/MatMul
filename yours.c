@@ -4,6 +4,8 @@
 #include "handout.h"
 #include "time.h"
 
+
+#define BLOCK_SIZE 32
 //these are the implemented methods in 'handout.o' :
 
 //double *generate(int n)
@@ -19,8 +21,8 @@ double *YoursBlocked(int n, double *A, double *B) {
     a = (double *) malloc(n * n * sizeof(double));
 
     time_t start = clock();
-
-    unsigned int block_size = 32;
+    unsigned int block_size = BLOCK_SIZE;
+    
     if(n < block_size){
         block_size = n;
     }
@@ -172,7 +174,7 @@ double * InitMatrix(int n){
     return p;
 }
 void StrassenRecursive(double *a, double* A, double*B, int n, int i_A, int j_A, int i_B, int j_B, int A_stride, int B_stride, int O_stride){
-    if(n > 16){
+    if(n > BLOCK_SIZE){
         int new_n = n/2;
         double *p1_v = InitMatrix(new_n);
 
@@ -231,7 +233,7 @@ void StrassenRecursive(double *a, double* A, double*B, int n, int i_A, int j_A, 
 
 void YoursRecursive(double* a, double *A, double *B, int n, int i, int j, int k, int stride) {
     // fill your code here, a is your output matrix
-    if( n > 16){
+    if( n > BLOCK_SIZE){
         int new_n = n/2;
         YoursRecursive(a, A, B, new_n, i, j, k, stride);
         YoursRecursive(a, A, B, new_n, i, j, k + new_n, stride);
