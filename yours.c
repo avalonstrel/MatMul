@@ -29,6 +29,7 @@ void printMat(double *x , int n){
         for(int j=0;j<n;j++){
             printf("%f ", x[i*n+j]);
         }
+        printf("\n");
     }
     printf("\n");
 }
