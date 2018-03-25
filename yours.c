@@ -280,22 +280,23 @@ int main(int argc, char *argv[]) {
         printf("B TRUE%d\n", 1);
     else
         printf("B FALSE%d\n", 0);
-    Y = (double *) malloc(n * n * sizeof(double));
+    double *a = (double *) malloc(n * n * sizeof(double));
     //double* a = (double *) malloc(n * n * sizeof(double));
     //int block_inds[] = {0, n, 0, n};
-    Y = generate(n);
+    //Y = generate(n);
+    printf("a");
     for(int i=0;i<n*n;i++){
-        printf("%f ",Y[i]);
+        printf("%f ",a[i]);
     }
     time_t start = clock();   
-    YoursRecursive(Y , A, B, n, 0, 0, 0, n);
+    YoursRecursive(a , A, B, n, 0, 0, 0, n);
     time_t end = clock();
     for(int i=0;i<n*n;i++){
-        printf("%f ",Y[i]);
+        printf("%f ",a[i]);
     }
     printf("\n");
     printf("Time %f\n", (double)(end - start)/CLOCKS_PER_SEC);
-    if (check(Y, A, B, n))
+    if (check(a, A, B, n))
         printf("R TRUE%d\n", 1);
     else
         printf("R FALSE%d\n", 0);
