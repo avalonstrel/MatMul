@@ -318,7 +318,7 @@ double *YoursStrassenRecursive(int n, double *A, double *B){
     time_t start = clock();
     int pad = (n+1)/2 - n/2;
     a = InitMatrix(n+pad);
-    StrassenRecursiveImpl(a, A, B, n+pad, pad, pad, pad, pad, 0, 0, 0, 0, n, n, n);
+    StrassenRecursiveImpl(a, A, B, n+pad, pad, pad, pad, pad, 0, 0, 0, 0, n, n, n+pad);
     double *r = InitMatrix(n);
     for(int i=0;i<n;i++){
         for(int j=0;j <n;j++){
