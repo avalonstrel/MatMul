@@ -280,16 +280,18 @@ void StrassenRecursiveImpl(double *O, double* A, double*B, int n, int pad_i, int
         int true_n_j = n-pad_j;
         int true_n_k = n-pad_k;
         double a,b;
-        for(int i = 0; i < true_n_i ; i++){
-            for(int j = 0; j < true_n_j; j++){
+        for(int i = 0; i < n ; i++){
+            for(int j = 0; j < n; j++){
                 sum = 0.0;
                 k_stride = (i_B )*B_stride;
-                for(int k = 0; k < true_n_k; k++){
-
-                    sum += A[i_stride + j_A + k] * B[k_stride + j_B + j];
+                for(int k = 0; k < n; k++){
+                    a = i < true_n_i & k < true_n_k ? A[i_stride + j_A + k]:0;
+                    b = j < true_n_j & k < true_n_k ? B[k_stride + j_B + j]:0;
+                    sum += a * b;
                     k_stride += B_stride;
                 }
-                O[o_stride + j] += sum;
+                if(i < true_n_i && j < true_n_j)
+                    O[o_stride + j] += sum;
             }
             i_stride += A_stride;
             o_stride += O_stride;
@@ -368,11 +370,7 @@ int main(int argc, char *argv[]) {
         printf("N FALSE%d\n", 0);
 
     Y = YoursBlocked(n,A,B);
-    printf("B\n");
-    for(int i=0; i<n*n ;i++){
-        printf("%f ", Y[i]);
-    }
-    printf("\n");
+
     if (check(Y, A, B, n))
         printf("B TRUE%d\n", 1);
     else
