@@ -163,17 +163,26 @@ void MatSub(double* A, double *B, int n, int i_A, int j_A, int i_B, int j_B, int
     }
 }
 
+double * InitMatrix(int n){
+    double * p = (double *) malloc(n * n * sizeof(double));
+
+    for(int i=0;i < n*n; i++){
+        p[i] = 0.0;
+    }
+    return p;
+}
 void StrassenRecursive(double *a, double* A, double*B, int n, int i_A, int j_A, int i_B, int j_B, int A_stride, int B_stride, int O_stride){
     if(n > 2){
-        double *p1_v = (double *) malloc(n * n * sizeof(double));
+        double *p1_v = InitMatrix(n);
 
         p1(p1_v, A, B, n, i_A, j_A, i_B, j_B, A_stride, B_stride);
-        printf("p1\n");
+
+        double *p2_v = (double *) malloc(n * n * sizeof(double));
+        printf("p2\n");
         for(int i=0;i<n*n;i++){
-            printf("%f ",p1_v[i] );
+            printf("%f ",p2_v[i] );
         }
         printf("\n");
-        double *p2_v = (double *) malloc(n * n * sizeof(double));
         p2(p2_v, A, B, n, i_A, j_A, i_B, j_B, A_stride, B_stride);
         double *p3_v = (double *) malloc(n * n * sizeof(double));
         p3(p3_v, A, B, n, i_A, j_A, i_B, j_B, A_stride, B_stride);
@@ -206,7 +215,7 @@ void StrassenRecursive(double *a, double* A, double*B, int n, int i_A, int j_A, 
                 for(int k = 0; k < n; k++){
                     sum += A[(i_A+i)*A_stride + j_A + k] * B[(k + i_B )*B_stride + j_B + j];
                 }
-                a[i*n + j] += sum;
+                a[i*O_stride + j] += sum;
             }
         }
     }
