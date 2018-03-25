@@ -305,31 +305,31 @@ void StrassenRecursiveImpl(double *O, double* A, double*B, int n, int pad_i_A, i
         double *p7_v = InitMatrix(new_n);
         p7(p7_v, A, B, new_n, pad, i_A, j_A, i_B, j_B, A_stride, B_stride);
 
-        MatAdd2(O, p5_v, new_n, new_n, 0, 0, 0, 0, O_stride, new_n);
-        MatAdd2(O, p4_v, new_n, new_n, 0, 0, 0, 0, O_stride, new_n);
-        MatAdd2(O, p6_v, new_n, new_n, 0, 0, 0, 0, O_stride, new_n);
-        MatSub2(O, p2_v, new_n, new_n, 0, 0, 0, 0, O_stride, new_n);
-        MatAdd2(O, p1_v, new_n, new_n-pad, 0, new_n, 0, 0, O_stride, new_n);
-        MatAdd2(O, p2_v, new_n, new_n-pad, 0, new_n, 0, 0, O_stride, new_n);
-        MatAdd2(O, p3_v, new_n-pad, new_n,  new_n, 0, 0, 0, O_stride, new_n);
-        MatAdd2(O, p4_v, new_n-pad, new_n, new_n, 0, 0, 0, O_stride, new_n);
-        MatAdd2(O, p5_v, new_n-pad, new_n-pad, new_n, new_n, 0, 0, O_stride, new_n);
-        MatAdd2(O, p1_v, new_n-pad, new_n-pad, new_n, new_n, 0, 0, O_stride, new_n);
-        MatSub2(O, p3_v, new_n-pad, new_n-pad, new_n, new_n, 0, 0, O_stride, new_n);
-        MatSub2(O, p7_v, new_n-pad, new_n-pad, new_n, new_n, 0, 0, O_stride, new_n);
-        printMat(O, n);
-        // MatAdd(O, p5_v, new_n,  0, 0, 0, 0, O_stride, new_n);
-        // MatAdd(O, p4_v, new_n,  0, 0, 0, 0, O_stride, new_n);
-        // MatAdd(O, p6_v, new_n,  0, 0, 0, 0, O_stride, new_n);
-        // MatSub(O, p2_v, new_n,  0, 0, 0, 0, O_stride, new_n);
-        // MatAdd(O, p1_v, new_n,  0, new_n, 0, 0, O_stride, new_n);
-        // MatAdd(O, p2_v, new_n,  0, new_n, 0, 0, O_stride, new_n);
-        // MatAdd(O, p3_v, new_n,  new_n, 0, 0, 0, O_stride, new_n);
-        // MatAdd(O, p4_v, new_n, new_n, 0, 0, 0, O_stride, new_n);
-        // MatAdd(O, p5_v, new_n,  new_n, new_n, 0, 0, O_stride, new_n);
-        // MatAdd(O, p1_v, new_n,  new_n, new_n, 0, 0, O_stride, new_n);
-        // MatSub(O, p3_v, new_n,  new_n, new_n, 0, 0, O_stride, new_n);
-        // MatSub(O, p7_v, new_n,  new_n, new_n, 0, 0, O_stride, new_n);
+        // MatAdd2(O, p5_v, new_n, new_n, 0, 0, 0, 0, O_stride, new_n);
+        // MatAdd2(O, p4_v, new_n, new_n, 0, 0, 0, 0, O_stride, new_n);
+        // MatAdd2(O, p6_v, new_n, new_n, 0, 0, 0, 0, O_stride, new_n);
+        // MatSub2(O, p2_v, new_n, new_n, 0, 0, 0, 0, O_stride, new_n);
+        // MatAdd2(O, p1_v, new_n, new_n-pad, 0, new_n, 0, 0, O_stride, new_n);
+        // MatAdd2(O, p2_v, new_n, new_n-pad, 0, new_n, 0, 0, O_stride, new_n);
+        // MatAdd2(O, p3_v, new_n-pad, new_n,  new_n, 0, 0, 0, O_stride, new_n);
+        // MatAdd2(O, p4_v, new_n-pad, new_n, new_n, 0, 0, 0, O_stride, new_n);
+        // MatAdd2(O, p5_v, new_n-pad, new_n-pad, new_n, new_n, 0, 0, O_stride, new_n);
+        // MatAdd2(O, p1_v, new_n-pad, new_n-pad, new_n, new_n, 0, 0, O_stride, new_n);
+        // MatSub2(O, p3_v, new_n-pad, new_n-pad, new_n, new_n, 0, 0, O_stride, new_n);
+        // MatSub2(O, p7_v, new_n-pad, new_n-pad, new_n, new_n, 0, 0, O_stride, new_n);
+        
+        MatAdd(O, p5_v, new_n,  0, 0, 0, 0, O_stride, new_n);
+        MatAdd(O, p4_v, new_n,  0, 0, 0, 0, O_stride, new_n);
+        MatAdd(O, p6_v, new_n,  0, 0, 0, 0, O_stride, new_n);
+        MatSub(O, p2_v, new_n,  0, 0, 0, 0, O_stride, new_n);
+        MatAdd(O, p1_v, new_n,  0, new_n, 0, 0, O_stride, new_n);
+        MatAdd(O, p2_v, new_n,  0, new_n, 0, 0, O_stride, new_n);
+        MatAdd(O, p3_v, new_n,  new_n, 0, 0, 0, O_stride, new_n);
+        MatAdd(O, p4_v, new_n, new_n, 0, 0, 0, O_stride, new_n);
+        MatAdd(O, p5_v, new_n,  new_n, new_n, 0, 0, O_stride, new_n);
+        MatAdd(O, p1_v, new_n,  new_n, new_n, 0, 0, O_stride, new_n);
+        MatSub(O, p3_v, new_n,  new_n, new_n, 0, 0, O_stride, new_n);
+        MatSub(O, p7_v, new_n,  new_n, new_n, 0, 0, O_stride, new_n);
     }else{
         double sum = 0.0;
         int i_stride = (i_A)*A_stride;
@@ -345,9 +345,9 @@ void StrassenRecursiveImpl(double *O, double* A, double*B, int n, int pad_i_A, i
                 sum = 0.0;
                 k_stride = (i_B )*B_stride;
                 for(int k = 0; k < n; k++){
-                    a = i < n_pad_i_A && k < n_pad_j_A ? A[i_stride + j_A + k]:0;
-                    b = j < n_pad_j_B && k < n_pad_i_B ? B[k_stride + j_B + j]:0;
-                    sum += a * b;
+                    // a = i < n_pad_i_A && k < n_pad_j_A ? A[i_stride + j_A + k]:0;
+                    // b = j < n_pad_j_B && k < n_pad_i_B ? B[k_stride + j_B + j]:0;
+                    sum += A[i_stride + j_A + k] * B[k_stride + j_B + j];
                     k_stride += B_stride;
                     //printf("i,j,k,l:%d,%d,%d,%d",i_A+i, j_A+k, i_B+k, j_B+j);
                 }
