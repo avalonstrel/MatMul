@@ -391,7 +391,7 @@ double *YoursStrassenRecursive(int n, double *A, double *B, int b){
 }
 void YoursRecursiveImpl(double* a, double *A, double *B, int n, int i, int j, int k, int stride) {
     // fill your code here, a is your output matrix
-    if( n > BLOCK_SIZE){
+    if( n > 64){
         int new_n = n/2;
         YoursRecursiveImpl(a, A, B, new_n, i, j, k, stride);
         YoursRecursiveImpl(a, A, B, new_n, i, j, k + new_n, stride);
