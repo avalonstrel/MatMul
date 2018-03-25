@@ -223,6 +223,7 @@ void p7(double *p7, double *A, double *B, int n, int pad, int i_A, int j_A, int 
     }    
     StrassenRecursiveImpl(p7, tmp, tmp2, n, 0, 0, 0, 0, 0, 0, 0, 0, n, n, n);
 }
+
 void MatAdd(double* A, double *B, int n, int i_A, int j_A, int i_B, int j_B, int A_stride, int B_stride){
     for(int i=0; i < n; i++){
         for(int j=0; j < n; j++){
@@ -230,6 +231,7 @@ void MatAdd(double* A, double *B, int n, int i_A, int j_A, int i_B, int j_B, int
         }
     }
 }
+
 void MatSub(double* A, double *B, int n, int i_A, int j_A, int i_B, int j_B, int A_stride, int B_stride){
     for(int i=0; i < n; i++){
         for(int j=0; j < n; j++){
@@ -238,6 +240,21 @@ void MatSub(double* A, double *B, int n, int i_A, int j_A, int i_B, int j_B, int
     }
 }
 
+void MatAdd2(double* A, double *B, int n_i, int n_j, int i_A, int j_A, int i_B, int j_B, int A_stride, int B_stride){
+    for(int i=0; i < n_i; i++){
+        for(int j=0; j < n_j; j++){
+            A[(i_A+i)*A_stride+j_A+j] += B[(i_B+i)*B_stride+j_B+j];
+        }
+    }
+}
+
+void MatSub2(double* A, double *B, int n_i, int n_j, int i_A, int j_A, int i_B, int j_B, int A_stride, int B_stride){
+    for(int i=0; i < n_i; i++){
+        for(int j=0; j < n_j; j++){
+            A[(i_A+i)*A_stride+j_A+j] -= B[(i_B+i)*B_stride+j_B+j];
+        }
+    }
+}
 
 
 void StrassenRecursiveImpl(double *O, double* A, double*B, int n, int pad_i_A, int pad_j_A, int pad_i_B, int pad_j_B, int i_A, int j_A, int i_B, int j_B, int A_stride, int B_stride, int O_stride){
@@ -245,6 +262,7 @@ void StrassenRecursiveImpl(double *O, double* A, double*B, int n, int pad_i_A, i
 
         int new_n = (n+1)/2;
         int pad = new_n - n/2;
+
         double *p1_v = InitMatrix(new_n);
         p1(p1_v, A, B, new_n, pad, i_A, j_A, i_B, j_B, A_stride, B_stride);
         double *p2_v = InitMatrix(new_n);
@@ -259,30 +277,30 @@ void StrassenRecursiveImpl(double *O, double* A, double*B, int n, int pad_i_A, i
         p6(p6_v, A, B, new_n, pad, i_A, j_A, i_B, j_B, A_stride, B_stride);
         double *p7_v = InitMatrix(new_n);
         p7(p7_v, A, B, new_n, pad, i_A, j_A, i_B, j_B, A_stride, B_stride);
-        // MatAdd(O, p5_v, new_n, new_n, 0, 0, 0, 0, O_stride, new_n);
-        // MatAdd(O, p4_v, new_n, new_n, 0, 0, 0, 0, O_stride, new_n);
-        // MatAdd(O, p6_v, new_n, new_n, 0, 0, 0, 0, O_stride, new_n);
-        // MatSub(O, p2_v, new_n, new_n, 0, 0, 0, 0, O_stride, new_n);
-        // MatAdd(O, p1_v, new_n, new_n-pad, 0, new_n, 0, 0, O_stride, new_n);
-        // MatAdd(O, p2_v, new_n, new_n-pad, 0, new_n, 0, 0, O_stride, new_n);
-        // MatAdd(O, p3_v, new_n-pad, new_n,  new_n, 0, 0, 0, O_stride, new_n);
-        // MatAdd(O, p4_v, new_n-pad, new_n, new_n, 0, 0, 0, O_stride, new_n);
-        // MatAdd(O, p5_v, new_n-pad, new_n-pad, new_n, new_n, 0, 0, O_stride, new_n);
-        // MatAdd(O, p1_v, new_n-pad, new_n-pad, new_n, new_n, 0, 0, O_stride, new_n);
-        // MatSub(O, p3_v, new_n-pad, new_n-pad, new_n, new_n, 0, 0, O_stride, new_n);
-        // MatSub(O, p7_v, new_n-pad, new_n-pad, new_n, new_n, 0, 0, O_stride, new_n);
-        MatAdd(O, p5_v, new_n,  0, 0, 0, 0, O_stride, new_n);
-        MatAdd(O, p4_v, new_n,  0, 0, 0, 0, O_stride, new_n);
-        MatAdd(O, p6_v, new_n,  0, 0, 0, 0, O_stride, new_n);
-        MatSub(O, p2_v, new_n,  0, 0, 0, 0, O_stride, new_n);
-        MatAdd(O, p1_v, new_n,  0, new_n, 0, 0, O_stride, new_n);
-        MatAdd(O, p2_v, new_n,  0, new_n, 0, 0, O_stride, new_n);
-        MatAdd(O, p3_v, new_n,  new_n, 0, 0, 0, O_stride, new_n);
-        MatAdd(O, p4_v, new_n, new_n, 0, 0, 0, O_stride, new_n);
-        MatAdd(O, p5_v, new_n,  new_n, new_n, 0, 0, O_stride, new_n);
-        MatAdd(O, p1_v, new_n,  new_n, new_n, 0, 0, O_stride, new_n);
-        MatSub(O, p3_v, new_n,  new_n, new_n, 0, 0, O_stride, new_n);
-        MatSub(O, p7_v, new_n,  new_n, new_n, 0, 0, O_stride, new_n);
+        MatAdd2(O, p5_v, new_n, new_n, 0, 0, 0, 0, O_stride, new_n);
+        MatAdd2(O, p4_v, new_n, new_n, 0, 0, 0, 0, O_stride, new_n);
+        MatAdd2(O, p6_v, new_n, new_n, 0, 0, 0, 0, O_stride, new_n);
+        MatSub2(O, p2_v, new_n, new_n, 0, 0, 0, 0, O_stride, new_n);
+        MatAdd2(O, p1_v, new_n, new_n-pad, 0, new_n, 0, 0, O_stride, new_n);
+        MatAdd2(O, p2_v, new_n, new_n-pad, 0, new_n, 0, 0, O_stride, new_n);
+        MatAdd2(O, p3_v, new_n-pad, new_n,  new_n, 0, 0, 0, O_stride, new_n);
+        MatAdd2(O, p4_v, new_n-pad, new_n, new_n, 0, 0, 0, O_stride, new_n);
+        MatAdd2(O, p5_v, new_n-pad, new_n-pad, new_n, new_n, 0, 0, O_stride, new_n);
+        MatAdd2(O, p1_v, new_n-pad, new_n-pad, new_n, new_n, 0, 0, O_stride, new_n);
+        MatSub2(O, p3_v, new_n-pad, new_n-pad, new_n, new_n, 0, 0, O_stride, new_n);
+        MatSub2(O, p7_v, new_n-pad, new_n-pad, new_n, new_n, 0, 0, O_stride, new_n);
+        // MatAdd(O, p5_v, new_n,  0, 0, 0, 0, O_stride, new_n);
+        // MatAdd(O, p4_v, new_n,  0, 0, 0, 0, O_stride, new_n);
+        // MatAdd(O, p6_v, new_n,  0, 0, 0, 0, O_stride, new_n);
+        // MatSub(O, p2_v, new_n,  0, 0, 0, 0, O_stride, new_n);
+        // MatAdd(O, p1_v, new_n,  0, new_n, 0, 0, O_stride, new_n);
+        // MatAdd(O, p2_v, new_n,  0, new_n, 0, 0, O_stride, new_n);
+        // MatAdd(O, p3_v, new_n,  new_n, 0, 0, 0, O_stride, new_n);
+        // MatAdd(O, p4_v, new_n, new_n, 0, 0, 0, O_stride, new_n);
+        // MatAdd(O, p5_v, new_n,  new_n, new_n, 0, 0, O_stride, new_n);
+        // MatAdd(O, p1_v, new_n,  new_n, new_n, 0, 0, O_stride, new_n);
+        // MatSub(O, p3_v, new_n,  new_n, new_n, 0, 0, O_stride, new_n);
+        // MatSub(O, p7_v, new_n,  new_n, new_n, 0, 0, O_stride, new_n);
     }else{
         double sum = 0.0;
         int i_stride = (i_A)*A_stride;
@@ -317,8 +335,8 @@ double *YoursStrassenRecursive(int n, double *A, double *B){
     
     time_t start = clock();
     int pad = (n+1)/2 - n/2;
-    a = InitMatrix(n+pad);
-    StrassenRecursiveImpl(a, A, B, n+pad, pad, pad, pad, pad, 0, 0, 0, 0, n, n, n+pad);
+    a = InitMatrix(n);
+    StrassenRecursiveImpl(a, A, B, n, pad, pad, pad, pad, 0, 0, 0, 0, n, n, n);
     double *r = InitMatrix(n);
     for(int i=0;i<n;i++){
         for(int j=0;j <n;j++){
