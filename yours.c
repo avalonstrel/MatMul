@@ -262,14 +262,7 @@ int main(int argc, char *argv[]) {
     double *Y;
     Y = (double *) malloc(n * n * sizeof(double));
     Y = generate(n);
-    for(int i=0;i<n*n;i++){
-        printf("%f ",Y[i]);
-    }
     Y = YoursBlocked(n,A,B);
-    for(int i=0;i<n*n;i++){
-        printf("%f ",Y[i]);
-    }
-    printf("\n");
 //    Y = Mult(A, B, n);
 //    printf("Y\n");
 //    printMatrix(Y, n);
