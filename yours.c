@@ -225,7 +225,6 @@ void p7(double *p7, double *A, double *B, int n,  int i_A, int j_A, int i_B, int
         }
     }
     double * tmp2 = InitMatrix(n);
-    double  f;
     for(int i=0; i < n; i++){
         for(int j=0; j < n; j++){
             tmp2[i*n+j] = B[(i_B+i)*B_stride+j_B+j] + B[(i_B+i)*B_stride+j_B+n+j];
@@ -351,16 +350,16 @@ double *YoursStrassenRecursive(int n, double *A, double *B){
     double *a;
     
     time_t start = clock();
-    int pad = getPadLen(n, BLOCK_SIZE);
-    printf("pad %d", pad);
-    a = InitMatrix(n+pad);
-    A = PadMat(A, n, pad);
-    B = PadMat(B, n, pad);
-    StrassenRecursiveImpl(a, A, B, n+pad,  0, 0, 0, 0, n+pad, n+pad, n+pad);
+    int padLen = getPadLen(n, BLOCK_SIZE);
+    printf("pad %d", padLen);
+    a = InitMatrix(padLen);
+    A = PadMat(A, n, padLen-n);
+    B = PadMat(B, n, padLen-n);
+    StrassenRecursiveImpl(a, A, B, padLen,  0, 0, 0, 0, padLen, padLen, padLen);
     double *r = InitMatrix(n);
     for(int i=0;i<n;i++){
         for(int j=0;j <n;j++){
-            r[i*n+j] = a[i*(n+pad)+j];
+            r[i*n+j] = a[i*(padLen)+j];
         }
     }
     time_t end = clock();
