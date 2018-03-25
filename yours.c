@@ -293,7 +293,7 @@ int main(int argc, char *argv[]) {
         a[i]=0.0;
     }
     start = clock();   
-    StrassenRecursive(Y, A,B, n/2, 0, 0, 0, 0, n, n, n);
+    StrassenRecursive(a, A,B, n/2, 0, 0, 0, 0, n, n, n);
     end = clock();
 
     printf("Time %f\n", (double)(end - start)/CLOCKS_PER_SEC);
