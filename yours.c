@@ -265,7 +265,7 @@ int main(int argc, char *argv[]) {
     double* a = (double *) malloc(n * n * sizeof(double));
     int block_inds[] = {0, n, 0, n}; 
     time_t start = clock();   
-    //YoursRecursive(a , A, B, n, 0, 0, 0, n);
+    YoursRecursive(a , A, B, n, 0, 0, 0, n);
     time_t end = clock();
 
     printf("Time %f\n", (double)(end - start)/CLOCKS_PER_SEC);
