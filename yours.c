@@ -26,7 +26,7 @@ double * InitMatrix(int n){
 }
 double *Naive(int n, double* A, double *B){
     double *a;
-    a = (double *) malloc(n * n * sizeof(double));
+    a = InitMatrix(n);
 
     time_t start = clock();
     unsigned int block_size = BLOCK_SIZE;
@@ -47,7 +47,7 @@ double *Naive(int n, double* A, double *B){
 
 double *YoursBlocked(int n, double *A, double *B) {
     double *a;
-    a = (double *) malloc(n * n * sizeof(double));
+    a = InitMatrix(n);
 
     time_t start = clock();
     unsigned int i_block_size = BLOCK_SIZE;
