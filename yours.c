@@ -233,7 +233,7 @@ void YoursRecursive(double* a, double *A, double *B, int n, int i, int j, int k,
                 sum = 0.0;
                 for(int k_ = k; k_ < k + n; k_++){
                     sum += A[i_stride + k_] * B[k_*stride + j_];
-                    printf("i,k,j:%d,%d,%d\n", i_,k_, j_ );
+                    printf("i,k,j:%d,%d,%d %d\n", i_,k_, j_ ,i_stride);
                 }
                 a[i_stride + j_] += sum;
             }
