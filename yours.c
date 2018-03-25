@@ -217,15 +217,21 @@ void StrassenRecursive(double *a, double* A, double*B, int n, int i_A, int j_A, 
         MatSub(a, p7_v, new_n, new_n, new_n, 0, 0, O_stride, new_n);
     }else{
         double sum = 0.0;
+        int i_stride = (i_A)*A_stride;
+        int k_stride = (i_B )*B_stride;
         for(int i = 0; i < n ; i++){
             for(int j = 0; j < n; j++){
                 sum = 0.0;
                 for(int k = 0; k < n; k++){
-                    sum += A[(i_A+i)*A_stride + j_A + k] * B[(k + i_B )*B_stride + j_B + j];
+                    //sum += A[(i_A+i)*A_stride + j_A + k] * B[(k + i_B )*B_stride + j_B + j];
                     //printf("i,j,k,l:%d,%d,%d,%d", i_A+i, j_A+k, k+i_B, j_B+j);
+                    sum += A[i_stride + j_A + k] * B[k_stride + j_B + j];
+                    k_stride += B_stride;
                 }
                 a[i*O_stride + j] += sum;
             }
+            i_stride += A_stride;
+
         }
     }
 }
@@ -246,8 +252,20 @@ void YoursRecursive(double* a, double *A, double *B, int n, int i, int j, int k,
     }else{
         double sum = 0.0;
         int i_stride = i*stride;
-        // for(int i_ = i; i_ < i + n ; i_++){
+        for(int i_ = i; i_ < i + n ; i_++){
             
+            for(int j_ = j; j_ < j + n; j_++){
+                sum = 0.0;
+                for(int k_ = k; k_ < k + n; k_++){
+                    sum += A[i_stride + k_] * B[k_*stride + j_];
+                    //printf("i,j,k:%d,%d,%d",i_,j_,k_);
+                }
+                //printf("i_stride+j_: %d ; %d \n", i_stride + j_ ,32*32);
+                a[i_stride + j_] += sum;
+            }
+            i_stride += stride;
+        }
+        // for(int i_ = i; i_ < i + n ; i_++){
         //     for(int j_ = j; j_ < j + n; j_++){
         //         sum = 0.0;
         //         for(int k_ = k; k_ < k + n; k_++){
@@ -259,18 +277,6 @@ void YoursRecursive(double* a, double *A, double *B, int n, int i, int j, int k,
         //     }
         //     i_stride += stride;
         // }
-        for(int i_ = i; i_ < i + n ; i_++){
-            for(int k_ = k; k_ < k + n; k_++){
-                for(int j_ = j; j_ < j + n; j_++){
-                
-                
-                    a[i_stride +j_] += A[i_stride + k_] * B[k_*stride + j_];
-                    //printf("i,j,k:%d,%d,%d",i_,j_,k_);
-                }
-                //printf("i_stride+j_: %d ; %d \n", i_stride + j_ ,32*32);
-            }
-            i_stride += stride;
-        }
     }
 
 }
