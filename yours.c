@@ -143,7 +143,7 @@ void p7(double *p7, double *A, double *B, int n, int i_A, int j_A, int i_B, int 
     double * tmp2 = (double *) malloc(n * n * sizeof(double));
     for(int i=0; i < n; i++){
         for(int j=0; j < n; j++){
-            tmp2[i*n+j] = B[(i_B+i)*B_stride+j_B+j] - B[(i_B+i)*B_stride+j_B+n+j];
+            tmp2[i*n+j] = B[(i_B+i)*B_stride+j_B+j] + B[(i_B+i)*B_stride+j_B+n+j];
         }
     }    
     StrassenRecursive(p7, tmp, tmp2, n, 0, 0, 0, 0, n, n, n);
