@@ -366,7 +366,7 @@ int main(int argc, char *argv[]) {
     for(int i=0; i<n ;i++){
         printf("\n");
         for(int j=0; j<n; j++)
-        printf("%.4f ", Y[i*n+j]);
+        printf("%5f ", Y[i*n+j]);
     }
     printf("\n");
     printf("\n");
@@ -393,7 +393,7 @@ int main(int argc, char *argv[]) {
     for(int i=0; i<n ;i++){
         printf("\n");
         for(int j=0; j<n; j++)
-        printf("%.4f ", Y[i*n+j]);
+        printf("%5f ", Y[i*n+j]);
     }
     printf("\n");
     if (check(Y, A, B, n))
