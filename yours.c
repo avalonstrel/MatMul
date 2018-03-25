@@ -290,8 +290,9 @@ void StrassenRecursiveImpl(double *O, double* A, double*B, int n, int pad_i, int
                     sum += a * b;
                     k_stride += B_stride;
                 }
-                
-                O[o_stride + j] += sum;
+                if(i < true_n_i && j < true_n_j){
+                    O[o_stride + j] += sum;
+                }
             }
             i_stride += A_stride;
             o_stride += O_stride;
@@ -363,7 +364,7 @@ int main(int argc, char *argv[]) {
     for(int i=0; i<n ;i++){
         printf("\n");
         for(int j=0; j<n; j++)
-        printf("%f ", Y[i*n+j]);
+        printf("%.4f ", Y[i*n+j]);
     }
     printf("\n");
     printf("\n");
@@ -390,7 +391,7 @@ int main(int argc, char *argv[]) {
     for(int i=0; i<n ;i++){
         printf("\n");
         for(int j=0; j<n; j++)
-        printf("%f ", Y[i*n+j]);
+        printf("%.4f ", Y[i*n+j]);
     }
     printf("\n");
     if (check(Y, A, B, n))
