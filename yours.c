@@ -356,7 +356,7 @@ double *YoursStrassenRecursive(int n, double *A, double *B){
     a = InitMatrix(n+pad);
     A = PadMat(A, n, pad);
     B = PadMat(B, n, pad);
-    StrassenRecursiveImpl(a, A, B, n+pad, 0, 0, 0, 0, 0, 0, 0, 0, n+pad, n+pad, n+pad);
+    StrassenRecursiveImpl(a, A, B, n+pad,  0, 0, 0, 0, n+pad, n+pad, n+pad);
     double *r = InitMatrix(n);
     for(int i=0;i<n;i++){
         for(int j=0;j <n;j++){
