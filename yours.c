@@ -178,17 +178,17 @@ void StrassenRecursive(double *a, double* A, double*B, int n, int i_A, int j_A, 
         p1(p1_v, A, B, n, i_A, j_A, i_B, j_B, A_stride, B_stride);
 
         double *p2_v = InitMatrix(n);
-        printf("p2\n");
-        for(int i=0;i<n*n;i++){
-            printf("%f ",p2_v[i] );
-        }
-        printf("\n");
+        // printf("p2\n");
+        // for(int i=0;i<n*n;i++){
+        //     printf("%f ",p2_v[i] );
+        // }
+        // printf("\n");
         p2(p2_v, A, B, n, i_A, j_A, i_B, j_B, A_stride, B_stride);
-        printf("p2 after\n");
-        for(int i=0;i<n*n;i++){
-            printf("%f ",p2_v[i] );
-        }
-        printf("\n");
+        // printf("p2 after\n");
+        // for(int i=0;i<n*n;i++){
+        //     printf("%f ",p2_v[i] );
+        // }
+        // printf("\n");
         double *p3_v = InitMatrix(n);
         p3(p3_v, A, B, n, i_A, j_A, i_B, j_B, A_stride, B_stride);
         double *p4_v = InitMatrix(n);
@@ -219,6 +219,7 @@ void StrassenRecursive(double *a, double* A, double*B, int n, int i_A, int j_A, 
                 sum = 0.0;
                 for(int k = 0; k < n; k++){
                     sum += A[(i_A+i)*A_stride + j_A + k] * B[(k + i_B )*B_stride + j_B + j];
+                    printf("i,j,k,l:%d,%d,%d,%d", i_A+i, j_A+k, k+i_B, j_B+j);
                 }
                 a[i*O_stride + j] += sum;
             }
@@ -248,11 +249,11 @@ void YoursRecursive(double* a, double *A, double *B, int n, int i, int j, int k,
             for(int j_ = j; j_ < j + n; j_++){
                 sum = 0.0;
                 for(int k_ = k; k_ < k + n; k_++){
-                    sum += A[i_*stride + k_] * B[k_*stride + j_];
+                    sum += A[i_stride + k_] * B[k_*stride + j_];
                     //printf("i,j,k:%d,%d,%d",i_,j_,k_);
                 }
                 //printf("i_stride+j_: %d ; %d \n", i_stride + j_ ,32*32);
-                a[i_*stride + j_] += sum;
+                a[i_stride + j_] += sum;
             }
             i_stride += stride;
         }
