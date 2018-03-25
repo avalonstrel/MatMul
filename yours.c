@@ -6,7 +6,7 @@
 #include "time.h"
 
 
-#define BLOCK_SIZE 32
+#define BLOCK_SIZE 2
 
 //these are the implemented methods in 'handout.o' :
 
@@ -377,6 +377,11 @@ int main(int argc, char *argv[]) {
         printf("R FALSE%d\n", 0);
 
     Y = YoursStrassenRecursive(n, A, B);
+    printf("sr\n");
+    for(int i=0; i<n*n ;i++){
+        printf("%f ", Y[i]);
+    }
+    printf("\n");
     if (check(Y, A, B, n))
         printf("SR TRUE%d\n", 1);
     else
