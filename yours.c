@@ -61,8 +61,7 @@ double *YoursBlocked(int n, double *A, double *B) {
 // fill your code here, a is your output matrix
     return a;
 }
-
-void StrassenRecursive(double *a, double* A, double*B, int n, int i_A, int j_A, int i_B, int j_B, int A_stride, int B_stride, int O_stride);
+void StrassenRecursiveImpl(double *a, double* A, double*B, int n, int i_A, int j_A, int i_B, int j_B, int A_stride, int B_stride, int O_stride);
 //n n/2 
 void p1(double *p1, double *A, double *B, int n, int i_A, int j_A, int i_B, int j_B,  int A_stride, int B_stride){
     double * tmp = (double *) malloc(n * n * sizeof(double));
@@ -72,7 +71,7 @@ void p1(double *p1, double *A, double *B, int n, int i_A, int j_A, int i_B, int 
         }
     }
 
-    StrassenRecursive(p1, A, tmp, n, i_A, j_A, 0, 0, A_stride, n, n);
+    StrassenRecursiveImpl(p1, A, tmp, n, i_A, j_A, 0, 0, A_stride, n, n);
 }
 
 void p2(double *p2, double *A, double *B, int n, int i_A, int j_A, int i_B, int j_B,  int A_stride, int B_stride){
@@ -82,7 +81,7 @@ void p2(double *p2, double *A, double *B, int n, int i_A, int j_A, int i_B, int 
             tmp[i*n+j] = A[(i_A+i)*A_stride+j_A+j] + A[(i_A+i)*A_stride+j_A+j+n];
         }
     }
-    StrassenRecursive(p2, tmp, B, n, 0, 0, i_B + n, j_B + n, n, B_stride, n);
+    StrassenRecursiveImpl(p2, tmp, B, n, 0, 0, i_B + n, j_B + n, n, B_stride, n);
 }
 void p3(double *p3, double *A, double *B, int n, int i_A, int j_A, int i_B, int j_B,  int A_stride, int B_stride){
     double * tmp = (double *) malloc(n * n * sizeof(double));
@@ -91,7 +90,7 @@ void p3(double *p3, double *A, double *B, int n, int i_A, int j_A, int i_B, int 
             tmp[i*n+j] = A[(i_A+n+i)*A_stride+j_A+j] + A[(i_A+n+i)*A_stride+j_A+j+n];
         }
     }
-    StrassenRecursive(p3, tmp, B, n, 0, 0, i_B, j_B, n, B_stride, n);    
+    StrassenRecursiveImpl(p3, tmp, B, n, 0, 0, i_B, j_B, n, B_stride, n);    
 }
 void p4(double *p4, double *A, double *B, int n, int i_A, int j_A, int i_B, int j_B,  int A_stride, int B_stride){
     double * tmp = (double *) malloc(n * n * sizeof(double));
@@ -101,7 +100,7 @@ void p4(double *p4, double *A, double *B, int n, int i_A, int j_A, int i_B, int 
         }
     }
 
-    StrassenRecursive(p4, A, tmp, n, i_A + n, j_A + n, 0, 0, A_stride, n, n);
+    StrassenRecursiveImpl(p4, A, tmp, n, i_A + n, j_A + n, 0, 0, A_stride, n, n);
 }
 void p5(double *p5, double *A, double *B, int n, int i_A, int j_A, int i_B, int j_B,  int A_stride, int B_stride){
     double * tmp = (double *) malloc(n * n * sizeof(double));
@@ -116,7 +115,7 @@ void p5(double *p5, double *A, double *B, int n, int i_A, int j_A, int i_B, int 
             tmp2[i*n+j] = B[(i_B+i)*B_stride+j_B+j] + B[(i_B+n+i)*B_stride+j_B+n+j];
         }
     }    
-    StrassenRecursive(p5, tmp, tmp2, n, 0, 0, 0, 0, n, n, n);
+    StrassenRecursiveImpl(p5, tmp, tmp2, n, 0, 0, 0, 0, n, n, n);
 }
 void p6(double *p6, double *A, double *B, int n, int i_A, int j_A, int i_B, int j_B,  int A_stride, int B_stride){
     double * tmp = (double *) malloc(n * n * sizeof(double));
@@ -131,7 +130,7 @@ void p6(double *p6, double *A, double *B, int n, int i_A, int j_A, int i_B, int 
             tmp2[i*n+j] = B[(i_B+n+i)*B_stride+j_B+j] + B[(i_B+n+i)*B_stride+j_B+n+j];
         }
     }    
-    StrassenRecursive(p6, tmp, tmp2, n, 0, 0, 0, 0, n, n, n);
+    StrassenRecursiveImpl(p6, tmp, tmp2, n, 0, 0, 0, 0, n, n, n);
 }
 void p7(double *p7, double *A, double *B, int n, int i_A, int j_A, int i_B, int j_B,  int A_stride, int B_stride){
     double * tmp = (double *) malloc(n * n * sizeof(double));
@@ -146,7 +145,7 @@ void p7(double *p7, double *A, double *B, int n, int i_A, int j_A, int i_B, int 
             tmp2[i*n+j] = B[(i_B+i)*B_stride+j_B+j] + B[(i_B+i)*B_stride+j_B+n+j];
         }
     }    
-    StrassenRecursive(p7, tmp, tmp2, n, 0, 0, 0, 0, n, n, n);
+    StrassenRecursiveImpl(p7, tmp, tmp2, n, 0, 0, 0, 0, n, n, n);
 }
 void MatAdd(double* A, double *B, int n, int i_A, int j_A, int i_B, int j_B, int A_stride, int B_stride){
     for(int i=0; i < n; i++){
@@ -171,25 +170,14 @@ double * InitMatrix(int n){
     }
     return p;
 }
-void StrassenRecursive(double *a, double* A, double*B, int n, int i_A, int j_A, int i_B, int j_B, int A_stride, int B_stride, int O_stride){
+
+void StrassenRecursiveImpl(double *a, double* A, double*B, int n, int i_A, int j_A, int i_B, int j_B, int A_stride, int B_stride, int O_stride){
     if(n > BLOCK_SIZE){
         int new_n = n/2;
         double *p1_v = InitMatrix(new_n);
-
         p1(p1_v, A, B, new_n, i_A, j_A, i_B, j_B, A_stride, B_stride);
-
         double *p2_v = InitMatrix(new_n);
-        // printf("p2\n");
-        // for(int i=0;i<n*n;i++){
-        //     printf("%f ",p2_v[i] );
-        // }
-        // printf("\n");
         p2(p2_v, A, B,  new_n, i_A, j_A, i_B, j_B, A_stride, B_stride);
-        // printf("p2 after\n");
-        // for(int i=0;i<n*n;i++){
-        //     printf("%f ",p2_v[i] );
-        // }
-        // printf("\n");
         double *p3_v = InitMatrix( new_n);
         p3(p3_v, A, B,  new_n, i_A, j_A, i_B, j_B, A_stride, B_stride);
         double *p4_v = InitMatrix( new_n);
@@ -206,7 +194,6 @@ void StrassenRecursive(double *a, double* A, double*B, int n, int i_A, int j_A, 
         MatSub(a, p2_v, new_n, 0, 0, 0, 0, O_stride, new_n);
         MatAdd(a, p1_v, new_n, 0, new_n, 0, 0, O_stride, new_n);
         MatAdd(a, p2_v, new_n, 0, new_n, 0, 0, O_stride, new_n);
-        //MatAdd(a, p2_v, new_n, 0, new_n, 0, 0, O_stride, new_n);
         MatAdd(a, p3_v, new_n, new_n, 0, 0, 0, O_stride, new_n);
         MatAdd(a, p4_v, new_n, new_n, 0, 0, 0, O_stride, new_n);
         MatAdd(a, p5_v, new_n, new_n, new_n, 0, 0, O_stride, new_n);
@@ -223,8 +210,6 @@ void StrassenRecursive(double *a, double* A, double*B, int n, int i_A, int j_A, 
                 sum = 0.0;
                 k_stride = (i_B )*B_stride;
                 for(int k = 0; k < n; k++){
-                    //sum += A[(i_A+i)*A_stride + j_A + k] * B[(k + i_B )*B_stride + j_B + j];
-                    //printf("i,j,k,l:%d,%d,%d,%d", i_A+i, j_A+k, k+i_B, j_B+j);
                     sum += A[i_stride + j_A + k] * B[k_stride + j_B + j];
                     k_stride += B_stride;
                 }
@@ -235,20 +220,27 @@ void StrassenRecursive(double *a, double* A, double*B, int n, int i_A, int j_A, 
         }
     }
 }
-
-
-void YoursRecursive(double* a, double *A, double *B, int n, int i, int j, int k, int stride) {
+double *YoursStrassenRecursive(int n, double *A, double *B){
+    double *a;
+    a = (double *) malloc(n * n * sizeof(double));
+    time_t start = clock();
+    StrassenRecursiveImpl(a, A,B, n, 0, 0, 0, 0, n, n, n);
+    time_t end = clock();
+    printf("Time %f\n", (double)(end - start)/CLOCKS_PER_SEC);
+    return a;    
+}
+void YoursRecursiveImpl(double* a, double *A, double *B, int n, int i, int j, int k, int stride) {
     // fill your code here, a is your output matrix
     if( n > BLOCK_SIZE){
         int new_n = n/2;
-        YoursRecursive(a, A, B, new_n, i, j, k, stride);
-        YoursRecursive(a, A, B, new_n, i, j, k + new_n, stride);
-        YoursRecursive(a, A, B, new_n, i + new_n, j, k, stride);
-        YoursRecursive(a, A, B, new_n, i + new_n, j, k + new_n, stride);
-        YoursRecursive(a, A, B, new_n, i, j + new_n, k, stride);
-        YoursRecursive(a, A, B, new_n, i, j + new_n, k + new_n, stride);
-        YoursRecursive(a, A, B, new_n, i + new_n, j + new_n, k, stride);
-        YoursRecursive(a, A, B, new_n, i + new_n, j + new_n, k + new_n, stride);
+        YoursRecursiveImpl(a, A, B, new_n, i, j, k, stride);
+        YoursRecursiveImpl(a, A, B, new_n, i, j, k + new_n, stride);
+        YoursRecursiveImpl(a, A, B, new_n, i + new_n, j, k, stride);
+        YoursRecursiveImpl(a, A, B, new_n, i + new_n, j, k + new_n, stride);
+        YoursRecursiveImpl(a, A, B, new_n, i, j + new_n, k, stride);
+        YoursRecursiveImpl(a, A, B, new_n, i, j + new_n, k + new_n, stride);
+        YoursRecursiveImpl(a, A, B, new_n, i + new_n, j + new_n, k, stride);
+        YoursRecursiveImpl(a, A, B, new_n, i + new_n, j + new_n, k + new_n, stride);
     }else{
         double sum = 0.0;
         int i_stride = i*stride;
@@ -258,101 +250,56 @@ void YoursRecursive(double* a, double *A, double *B, int n, int i, int j, int k,
                 sum = 0.0;
                 for(int k_ = k; k_ < k + n; k_++){
                     sum += A[i_stride + k_] * B[k_*stride + j_];
-                    //printf("i,j,k:%d,%d,%d",i_,j_,k_);
                 }
-                //printf("i_stride+j_: %d ; %d \n", i_stride + j_ ,32*32);
+                
                 a[i_stride + j_] += sum;
             }
             i_stride += stride;
         }
-        // for(int i_ = i; i_ < i + n ; i_++){
-        //     for(int j_ = j; j_ < j + n; j_++){
-        //         sum = 0.0;
-        //         for(int k_ = k; k_ < k + n; k_++){
-        //             sum += A[i_stride + k_] * B[k_*stride + j_];
-        //             //printf("i,j,k:%d,%d,%d",i_,j_,k_);
-        //         }
-        //         //printf("i_stride+j_: %d ; %d \n", i_stride + j_ ,32*32);
-        //         a[i_stride + j_] += sum;
-        //     }
-        //     i_stride += stride;
-        // }
     }
 
 }
-
+double * YoursRecursive(int n, double* A, double *B){
+    double *a;
+    a = (double *) malloc(n * n * sizeof(double));
+    time_t start = clock();
+    YoursRecursiveImpl(a , A, B, n, 0, 0, 0, n);
+    time_t end = clock();
+    printf("Time %f\n", (double)(end - start)/CLOCKS_PER_SEC);
+    return a;
+}
 int main(int argc, char *argv[]) {
     srand((unsigned int) time(NULL));
     int n = atoi(argv[1]);
     double *A, *B;
     A = generate(n);
     B = generate(n);
-//    printf("A\n");
-//    printMatrix(A, n);
-//    printf("B\n");
-//    printMatrix(B, n);
+
     double *Y;
     Y = (double *) malloc(n * n * sizeof(double));
     Y = generate(n);
     Y = YoursBlocked(n,A,B);
-//    Y = Mult(A, B, n);
-//    printf("Y\n");
-//    printMatrix(Y, n);
+
     if (check(Y, A, B, n))
         printf("B TRUE%d\n", 1);
     else
         printf("B FALSE%d\n", 0);
-    double *a;
-    a = (double *) malloc(n * n * sizeof(double));
 
-    for(int i=0;i<n*n;i++){
-        a[i]=0.0;
-    }
-    time_t start = clock();   
-    YoursRecursive(a , A, B, n, 0, 0, 0, n);
-    time_t end = clock();
-    // printf("R\n");
-    // for(int i=0;i<n*n;i++){
-    //     printf("%f ",a[i] );
-    // }
-    // printf("\n");
-    printf("Time %f\n", (double)(end - start)/CLOCKS_PER_SEC);
-    if (check(a, A, B, n))
+    Y = YoursRecursive(n, A, B);
+    if (check(Y, A, B, n))
         printf("R TRUE%d\n", 1);
     else
         printf("R FALSE%d\n", 0);
 
-
-    a = (double *) malloc(n * n * sizeof(double));
-
-    for(int i=0;i<n*n;i++){
-        a[i]=0.0;
-    }
-    start = clock();   
-    StrassenRecursive(a, A,B, n, 0, 0, 0, 0, n, n, n);
-    end = clock();
-    // printf("SR\n");
-    // for(int i=0;i<n*n;i++){
-    //     printf("%f ",a[i] );
-    // }
-    // printf("\n");
-    printf("Time %f\n", (double)(end - start)/CLOCKS_PER_SEC);
-    if (check(a, A, B, n))
+    Y = YoursStrassenRecursive(n, A, B);
+    if (check(Y, A, B, n))
         printf("SR TRUE%d\n", 1);
     else
         printf("SR FALSE%d\n", 0);
-    // Y = (double *) malloc(n * n * sizeof(double));
-    
-    // start = clock();   
-    // StrassenRecursive(Y, A,B, n/2, 0, 0, 0, 0, n, n, n);
-    // end = clock();
-    
-    // printf("Time %f\n", (double)(end - start)/CLOCKS_PER_SEC);
-    // if (check(Y, A, B, n))
-    //     printf("R TRUE%d\n", 1);
-    // else
-    //     printf("R FALSE%d\n", 0);
-    //     
+
+
+
+
     free(A);
     free(B);
     free(Y);
