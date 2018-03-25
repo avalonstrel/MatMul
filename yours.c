@@ -17,6 +17,10 @@
 double *YoursBlocked(int n, double *A, double *B) {
     double *a;
     a = (double *) malloc(n * n * sizeof(double));
+    printf("a:");
+    for(int i=0;i<n*n;i++){
+        printf("%f ",a[i]);
+    }    
     time_t start = clock();
 
     unsigned int block_size = 32;
