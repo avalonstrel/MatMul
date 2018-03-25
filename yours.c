@@ -5,7 +5,7 @@
 #include "time.h"
 
 
-#define BLOCK_SIZE 32
+#define BLOCK_SIZE 16
 
 //these are the implemented methods in 'handout.o' :
 
@@ -35,6 +35,7 @@ double *Naive(int n, double* A, double *B){
     printf("Time %f\n", (double)(end - start)/CLOCKS_PER_SEC);
     return a;        
 }
+
 double *YoursBlocked(int n, double *A, double *B) {
     double *a;
     a = (double *) malloc(n * n * sizeof(double));
