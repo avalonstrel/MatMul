@@ -478,7 +478,7 @@ int main(int argc, char *argv[]){
     int ns[] = {1001,1007, 1023,1034,1046,1066,1088,1089};
     for(int i=0; i < 5;i++){
         for(int j =0;j < 8;j++){
-            printf("B:%d,n:%d",block_sizes[i], ns[j]);
+            printf("B:%d,n:%d\n",block_sizes[i], ns[j]);
             test(block_sizes[i], ns[j]);
         }
     }
