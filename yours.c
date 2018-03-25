@@ -5,7 +5,7 @@
 #include "time.h"
 
 
-#define BLOCK_SIZE 256
+#define BLOCK_SIZE 128
 
 //these are the implemented methods in 'handout.o' :
 
@@ -15,6 +15,26 @@
 //double *Mult(double *A, double *B, int n)
 
 //the timer should be implemented in the YoursBlocked & YoursRecursive function and printed out in a format like "TIME: 0.000000 seconds"
+double *Naive(int n, double* A, double *B){
+    double *a;
+    a = (double *) malloc(n * n * sizeof(double));
+
+    time_t start = clock();
+    unsigned int block_size = BLOCK_SIZE;
+    double sum = 0.0;
+    for(int i=0; i < n; i++){
+        for(int j=0; j < n; j++){
+            sum = 0.0;
+            for(int k=0;k < n; k++){
+                sum += A[i*n+k] * B[k*n+j];
+            }
+            a[i*n+j] += sum;
+        }
+    }
+    time_t end = clock();
+    printf("Time %f\n", (double)(end - start)/CLOCKS_PER_SEC);
+    return a;        
+}
 double *YoursBlocked(int n, double *A, double *B) {
     double *a;
     a = (double *) malloc(n * n * sizeof(double));
@@ -279,6 +299,13 @@ int main(int argc, char *argv[]) {
     double *Y;
     Y = (double *) malloc(n * n * sizeof(double));
     Y = generate(n);
+    Y = Naive(n,A,B);
+
+    if (check(Y, A, B, n))
+        printf("N TRUE%d\n", 1);
+    else
+        printf("N FALSE%d\n", 0);
+
     Y = YoursBlocked(n,A,B);
 
     if (check(Y, A, B, n))
