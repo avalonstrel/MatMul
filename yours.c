@@ -357,7 +357,11 @@ int main(int argc, char *argv[]) {
     Y = (double *) malloc(n * n * sizeof(double));
     Y = generate(n);
     Y = Naive(n,A,B);
-
+    printf("sr\n");
+    for(int i=0; i<n*n ;i++){
+        printf("%f ", Y[i]);
+    }
+    printf("\n");
     if (check(Y, A, B, n))
         printf("N TRUE%d\n", 1);
     else
