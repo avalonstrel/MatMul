@@ -213,8 +213,7 @@ void StrassenRecursive(double *a, double* A, double*B, int n, int i_A, int j_A, 
 
 void YoursRecursive(double* a, double *A, double *B, int n, int i, int j, int k, int stride) {
     // fill your code here, a is your output matrix
-    if( n > 2
-        ){
+    if( n > 16){
         int new_n = n/2;
         YoursRecursive(a, A, B, new_n, i, j, k, stride);
         YoursRecursive(a, A, B, new_n, i, j, k + new_n, stride);
@@ -276,9 +275,9 @@ int main(int argc, char *argv[]) {
 
     printf("Time %f\n", (double)(end - start)/CLOCKS_PER_SEC);
     if (check(Y, A, B, n))
-        printf("S TRUE%d\n", 1);
+        printf("R TRUE%d\n", 1);
     else
-        printf("S FALSE%d\n", 0);
+        printf("R FALSE%d\n", 0);
 
     // Y = (double *) malloc(n * n * sizeof(double));
     
