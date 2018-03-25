@@ -319,9 +319,16 @@ double *YoursStrassenRecursive(int n, double *A, double *B){
     int pad = (n+1)/2 - n/2;
     a = InitMatrix(n+pad);
     StrassenRecursiveImpl(a, A, B, n, pad, pad, pad, pad, 0, 0, 0, 0, n, n, n);
+    double *r = InitMatrix(n);
+    for(int i=0;i<n;i++){
+        for(int j=0;j <n;j++){
+            r[i*n+j] = a[i*(n+pad)+j];
+        }
+    }
     time_t end = clock();
+
     printf("Time %f\n", (double)(end - start)/CLOCKS_PER_SEC);
-    return a;    
+    return r;    
 }
 void YoursRecursiveImpl(double* a, double *A, double *B, int n, int i, int j, int k, int stride) {
     // fill your code here, a is your output matrix
