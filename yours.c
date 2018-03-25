@@ -72,7 +72,7 @@ void p1(double *p1, double *A, double *B, int n, int i_A, int j_A, int i_B, int 
         }
     }
 
-    StrassenRecursive(p1, A, tmp, n/2, i_A, j_A, 0, 0, A_stride, n, n);
+    StrassenRecursive(p1, A, tmp, n, i_A, j_A, 0, 0, A_stride, n, n);
 }
 
 void p2(double *p2, double *A, double *B, int n, int i_A, int j_A, int i_B, int j_B,  int A_stride, int B_stride){
@@ -82,7 +82,7 @@ void p2(double *p2, double *A, double *B, int n, int i_A, int j_A, int i_B, int 
             tmp[i*n+j] = A[(i_A+i)*A_stride+j_A+j] + A[(i_A+i)*A_stride+j_A+j+n];
         }
     }
-    StrassenRecursive(p2, tmp, B, n/2, 0, 0, i_B + n, j_B + n, n, B_stride, n);
+    StrassenRecursive(p2, tmp, B, n, 0, 0, i_B + n, j_B + n, n, B_stride, n);
 }
 void p3(double *p3, double *A, double *B, int n, int i_A, int j_A, int i_B, int j_B,  int A_stride, int B_stride){
     double * tmp = (double *) malloc(n * n * sizeof(double));
@@ -91,7 +91,7 @@ void p3(double *p3, double *A, double *B, int n, int i_A, int j_A, int i_B, int 
             tmp[i*n+j] = A[(i_A+n+i)*A_stride+j_A+j] + A[(i_A+n+i)*A_stride+j_A+j+n];
         }
     }
-    StrassenRecursive(p3, tmp, B, n/2, 0, 0, i_B, j_B, n, B_stride, n);    
+    StrassenRecursive(p3, tmp, B, n, 0, 0, i_B, j_B, n, B_stride, n);    
 }
 void p4(double *p4, double *A, double *B, int n, int i_A, int j_A, int i_B, int j_B,  int A_stride, int B_stride){
     double * tmp = (double *) malloc(n * n * sizeof(double));
@@ -101,7 +101,7 @@ void p4(double *p4, double *A, double *B, int n, int i_A, int j_A, int i_B, int 
         }
     }
 
-    StrassenRecursive(p4, A, tmp, n/2, i_A + n, j_A + n, 0, 0, A_stride, n, n);
+    StrassenRecursive(p4, A, tmp, n, i_A + n, j_A + n, 0, 0, A_stride, n, n);
 }
 void p5(double *p5, double *A, double *B, int n, int i_A, int j_A, int i_B, int j_B,  int A_stride, int B_stride){
     double * tmp = (double *) malloc(n * n * sizeof(double));
@@ -116,7 +116,7 @@ void p5(double *p5, double *A, double *B, int n, int i_A, int j_A, int i_B, int 
             tmp2[i*n+j] = B[(i_B+i)*B_stride+j_B+j] + B[(i_B+n+i)*B_stride+j_B+n+j];
         }
     }    
-    StrassenRecursive(p5, tmp, tmp2, n/2, 0, 0, 0, 0, n, n, n);
+    StrassenRecursive(p5, tmp, tmp2, n, 0, 0, 0, 0, n, n, n);
 }
 void p6(double *p6, double *A, double *B, int n, int i_A, int j_A, int i_B, int j_B,  int A_stride, int B_stride){
     double * tmp = (double *) malloc(n * n * sizeof(double));
@@ -131,7 +131,7 @@ void p6(double *p6, double *A, double *B, int n, int i_A, int j_A, int i_B, int 
             tmp2[i*n+j] = B[(i_B+n+i)*B_stride+j_B+j] + B[(i_B+n+i)*B_stride+j_B+n+j];
         }
     }    
-    StrassenRecursive(p6, tmp, tmp2, n/2, 0, 0, 0, 0, n, n, n);
+    StrassenRecursive(p6, tmp, tmp2, n, 0, 0, 0, 0, n, n, n);
 }
 void p7(double *p7, double *A, double *B, int n, int i_A, int j_A, int i_B, int j_B,  int A_stride, int B_stride){
     double * tmp = (double *) malloc(n * n * sizeof(double));
@@ -146,7 +146,7 @@ void p7(double *p7, double *A, double *B, int n, int i_A, int j_A, int i_B, int 
             tmp2[i*n+j] = B[(i_B+i)*B_stride+j_B+j] - B[(i_B+i)*B_stride+j_B+n+j];
         }
     }    
-    StrassenRecursive(p7, tmp, tmp2, n/2, 0, 0, 0, 0, n, n, n);
+    StrassenRecursive(p7, tmp, tmp2, n, 0, 0, 0, 0, n, n, n);
 }
 void MatAdd(double* A, double *B, int n, int i_A, int j_A, int i_B, int j_B, int A_stride, int B_stride){
     for(int i=0; i < n; i++){
@@ -173,45 +173,46 @@ double * InitMatrix(int n){
 }
 void StrassenRecursive(double *a, double* A, double*B, int n, int i_A, int j_A, int i_B, int j_B, int A_stride, int B_stride, int O_stride){
     if(n > 2){
-        double *p1_v = InitMatrix(n);
+        int new_n = n/2;
+        double *p1_v = InitMatrix(new_n);
 
-        p1(p1_v, A, B, n, i_A, j_A, i_B, j_B, A_stride, B_stride);
+        p1(p1_v, A, B, new_n, i_A, j_A, i_B, j_B, A_stride, B_stride);
 
-        double *p2_v = InitMatrix(n);
+        double *p2_v = InitMatrix(new_n);
         // printf("p2\n");
         // for(int i=0;i<n*n;i++){
         //     printf("%f ",p2_v[i] );
         // }
         // printf("\n");
-        p2(p2_v, A, B, n, i_A, j_A, i_B, j_B, A_stride, B_stride);
+        p2(p2_v, A, B,  new_n, i_A, j_A, i_B, j_B, A_stride, B_stride);
         // printf("p2 after\n");
         // for(int i=0;i<n*n;i++){
         //     printf("%f ",p2_v[i] );
         // }
         // printf("\n");
-        double *p3_v = InitMatrix(n);
-        p3(p3_v, A, B, n, i_A, j_A, i_B, j_B, A_stride, B_stride);
-        double *p4_v = InitMatrix(n);
-        p4(p4_v, A, B, n, i_A, j_A, i_B, j_B, A_stride, B_stride);
-        double *p5_v = InitMatrix(n);
-        p5(p5_v, A, B, n, i_A, j_A, i_B, j_B, A_stride, B_stride);
-        double *p6_v = InitMatrix(n);
-        p6(p6_v, A, B, n, i_A, j_A, i_B, j_B, A_stride, B_stride);
-        double *p7_v = InitMatrix(n);
-        p7(p7_v, A, B, n, i_A, j_A, i_B, j_B, A_stride, B_stride);
-        MatAdd(a, p5_v, n, 0, 0, 0, 0, O_stride, n);
-        MatAdd(a, p4_v, n, 0, 0, 0, 0, O_stride, n);
-        MatAdd(a, p6_v, n, 0, 0, 0, 0, O_stride, n);
-        MatSub(a, p2_v, n, 0, 0, 0, 0, O_stride, n);
-        MatAdd(a, p1_v, n, 0, n, 0, 0, O_stride, n);
-        MatAdd(a, p2_v, n, 0, n, 0, 0, O_stride, n);
-        //MatAdd(a, p2_v, n, 0, n, 0, 0, O_stride, n);
-        MatAdd(a, p3_v, n, n, 0, 0, 0, O_stride, n);
-        MatAdd(a, p4_v, n, n, 0, 0, 0, O_stride, n);
-        MatAdd(a, p5_v, n, n, n, 0, 0, O_stride, n);
-        MatAdd(a, p1_v, n, n, n, 0, 0, O_stride, n);
-        MatSub(a, p3_v, n, n, n, 0, 0, O_stride, n);
-        MatSub(a, p7_v, n, n, n, 0, 0, O_stride, n);
+        double *p3_v = InitMatrix( new_n);
+        p3(p3_v, A, B,  new_n, i_A, j_A, i_B, j_B, A_stride, B_stride);
+        double *p4_v = InitMatrix( new_n);
+        p4(p4_v, A, B,  new_n, i_A, j_A, i_B, j_B, A_stride, B_stride);
+        double *p5_v = InitMatrix( new_n);
+        p5(p5_v, A, B,  new_n, i_A, j_A, i_B, j_B, A_stride, B_stride);
+        double *p6_v = InitMatrix(new_n);
+        p6(p6_v, A, B, new_n, i_A, j_A, i_B, j_B, A_stride, B_stride);
+        double *p7_v = InitMatrix(new_n);
+        p7(p7_v, A, B, new_n, i_A, j_A, i_B, j_B, A_stride, B_stride);
+        MatAdd(a, p5_v, new_n, 0, 0, 0, 0, O_stride, new_n);
+        MatAdd(a, p4_v, new_n, 0, 0, 0, 0, O_stride, new_n);
+        MatAdd(a, p6_v, new_n, 0, 0, 0, 0, O_stride, new_n);
+        MatSub(a, p2_v, new_n, 0, 0, 0, 0, O_stride, new_n);
+        MatAdd(a, p1_v, new_n, 0, new_n, 0, 0, O_stride, new_n);
+        MatAdd(a, p2_v, new_n, 0, new_n, 0, 0, O_stride, new_n);
+        //MatAdd(a, p2_v, new_n, 0, new_n, 0, 0, O_stride, new_n);
+        MatAdd(a, p3_v, new_n, new_n, 0, 0, 0, O_stride, new_n);
+        MatAdd(a, p4_v, new_n, new_n, 0, 0, 0, O_stride, new_n);
+        MatAdd(a, p5_v, new_n, new_n, new_n, 0, 0, O_stride, new_n);
+        MatAdd(a, p1_v, new_n, new_n, new_n, 0, 0, O_stride, new_n);
+        MatSub(a, p3_v, new_n, new_n, new_n, 0, 0, O_stride, new_n);
+        MatSub(a, p7_v, new_n, new_n, new_n, 0, 0, O_stride, new_n);
     }else{
         double sum = 0.0;
         for(int i = 0; i < n ; i++){
@@ -309,7 +310,7 @@ int main(int argc, char *argv[]) {
         a[i]=0.0;
     }
     start = clock();   
-    StrassenRecursive(a, A,B, n/2, 0, 0, 0, 0, n, n, n);
+    StrassenRecursive(a, A,B, n, 0, 0, 0, 0, n, n, n);
     end = clock();
     printf("SR\n");
     for(int i=0;i<n*n;i++){
