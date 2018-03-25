@@ -40,7 +40,7 @@ int getPadLen(int n, int Q) {
         cnt++;
         tmp /= 2;
     }
-
+    cnt++;
     // result should be smallest value such that:
     // result >= actual_size AND
     // result % (1<<cnt) == 0
