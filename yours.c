@@ -262,14 +262,14 @@ int main(int argc, char *argv[]) {
     else
         printf("B FALSE%d\n", 0);
     
-    Y = (double *) malloc(n * n * sizeof(double));
+    double* a = (double *) malloc(n * n * sizeof(double));
     int block_inds[] = {0, n, 0, n}; 
     time_t start = clock();   
-    YoursRecursive(Y , A, B, n, 0, 0, 0, n);
+    YoursRecursive(a , A, B, n, 0, 0, 0, n);
     time_t end = clock();
 
     printf("Time %f\n", (double)(end - start)/CLOCKS_PER_SEC);
-    if (check(Y, A, B, n))
+    if (check(a, A, B, n))
         printf("R TRUE%d\n", 1);
     else
         printf("R FALSE%d\n", 0);
