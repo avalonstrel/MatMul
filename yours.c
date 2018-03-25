@@ -261,10 +261,14 @@ int main(int argc, char *argv[]) {
     double *Y;
     Y = (double *) malloc(n * n * sizeof(double));
     Y = generate(n);
+    for(int i=0;i<n*n;i++){
+        printf("%f ",Y[i]);
+    }
     Y = YoursBlocked(n,A,B);
     for(int i=0;i<n*n;i++){
         printf("%f ",Y[i]);
     }
+    printf("\n");
 //    Y = Mult(A, B, n);
 //    printf("Y\n");
 //    printMatrix(Y, n);
@@ -276,12 +280,16 @@ int main(int argc, char *argv[]) {
     //double* a = (double *) malloc(n * n * sizeof(double));
     //int block_inds[] = {0, n, 0, n};
     Y = generate(n);
+    for(int i=0;i<n*n;i++){
+        printf("%f ",Y[i]);
+    }
     time_t start = clock();   
     YoursRecursive(Y , A, B, n, 0, 0, 0, n);
     time_t end = clock();
     for(int i=0;i<n*n;i++){
         printf("%f ",Y[i]);
     }
+    printf("\n");
     printf("Time %f\n", (double)(end - start)/CLOCKS_PER_SEC);
     if (check(Y, A, B, n))
         printf("R TRUE%d\n", 1);
