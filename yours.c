@@ -220,7 +220,7 @@ void StrassenRecursive(double *a, double* A, double*B, int n, int i_A, int j_A, 
                 sum = 0.0;
                 for(int k = 0; k < n; k++){
                     sum += A[(i_A+i)*A_stride + j_A + k] * B[(k + i_B )*B_stride + j_B + j];
-                    printf("i,j,k,l:%d,%d,%d,%d", i_A+i, j_A+k, k+i_B, j_B+j);
+                    //printf("i,j,k,l:%d,%d,%d,%d", i_A+i, j_A+k, k+i_B, j_B+j);
                 }
                 a[i*O_stride + j] += sum;
             }
@@ -292,11 +292,11 @@ int main(int argc, char *argv[]) {
     time_t start = clock();   
     YoursRecursive(a , A, B, n, 0, 0, 0, n);
     time_t end = clock();
-    printf("R\n");
-    for(int i=0;i<n*n;i++){
-        printf("%f ",a[i] );
-    }
-    printf("\n");
+    // printf("R\n");
+    // for(int i=0;i<n*n;i++){
+    //     printf("%f ",a[i] );
+    // }
+    // printf("\n");
     printf("Time %f\n", (double)(end - start)/CLOCKS_PER_SEC);
     if (check(a, A, B, n))
         printf("R TRUE%d\n", 1);
@@ -312,11 +312,11 @@ int main(int argc, char *argv[]) {
     start = clock();   
     StrassenRecursive(a, A,B, n, 0, 0, 0, 0, n, n, n);
     end = clock();
-    printf("SR\n");
-    for(int i=0;i<n*n;i++){
-        printf("%f ",a[i] );
-    }
-    printf("\n");
+    // printf("SR\n");
+    // for(int i=0;i<n*n;i++){
+    //     printf("%f ",a[i] );
+    // }
+    // printf("\n");
     printf("Time %f\n", (double)(end - start)/CLOCKS_PER_SEC);
     if (check(a, A, B, n))
         printf("SR TRUE%d\n", 1);
