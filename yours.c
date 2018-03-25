@@ -288,6 +288,7 @@ int main(int argc, char *argv[]) {
     printf("a");
     for(int i=0;i<n*n;i++){
         printf("%f ",a[i]);
+        a[i]=0.0;
     }
     time_t start = clock();   
     YoursRecursive(a , A, B, n, 0, 0, 0, n);
