@@ -213,7 +213,7 @@ void StrassenRecursive(double *a, double* A, double*B, int n, int i_A, int j_A, 
 
 void YoursRecursive(double* a, double *A, double *B, int n, int i, int j, int k, int stride) {
     // fill your code here, a is your output matrix
-    if( n > 16){
+    if( n > 2){
         int new_n = n/2;
         YoursRecursive(a, A, B, new_n, i, j, k, stride);
         YoursRecursive(a, A, B, new_n, i, j, k + new_n, stride);
