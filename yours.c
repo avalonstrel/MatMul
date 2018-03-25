@@ -33,6 +33,24 @@ void printMat(double *x , int n){
     }
     printf("\n");
 }
+int getPadLen(int n, int Q) {
+    int cnt = 0;
+    int tmp = n;
+    while(tmp > Q) {
+        cnt++;
+        tmp /= 2;
+    }
+
+    // result should be smallest value such that:
+    // result >= actual_size AND
+    // result % (1<<cnt) == 0
+
+    if (n % (1<<cnt) == 0) {
+        return n;
+    } else {
+        return n + (1<<cnt) - n % (1<<cnt);
+    }
+}
 double *Naive(int n, double* A, double *B){
     double *a;
     a = InitMatrix(n);
@@ -345,9 +363,9 @@ double *YoursStrassenRecursive(int n, double *A, double *B){
     double *a;
     
     time_t start = clock();
-    int pad = (n+1)/2 - n/2;
-    a = InitMatrix(n);
-    StrassenRecursiveImpl(a, A, B, n, pad, pad, pad, pad, 0, 0, 0, 0, n, n, n);
+    int pad = getPadLen(n, BLOCK_SIZE);
+    a = InitMatrix(n+pad);
+    StrassenRecursiveImpl(a, A, B, n+pad, pad, pad, pad, pad, 0, 0, 0, 0, n, n, n+pad);
     double *r = InitMatrix(n);
     for(int i=0;i<n;i++){
         for(int j=0;j <n;j++){
@@ -357,7 +375,7 @@ double *YoursStrassenRecursive(int n, double *A, double *B){
     time_t end = clock();
 
     printf("Time %f\n", (double)(end - start)/CLOCKS_PER_SEC);
-    return a;    
+    return r;    
 }
 void YoursRecursiveImpl(double* a, double *A, double *B, int n, int i, int j, int k, int stride) {
     // fill your code here, a is your output matrix
