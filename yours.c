@@ -6,7 +6,7 @@
 #include "time.h"
 
 
-#define BLOCK_SIZE 4
+#define BLOCK_SIZE 128
 
 //these are the implemented methods in 'handout.o' :
 
@@ -416,8 +416,6 @@ int main(int argc, char *argv[]) {
     Y = generate(n);
     Y = Naive(n,A,B);
 
-    printf("\n");
-    printf("\n");
     if (check(Y, A, B, n))
         printf("N TRUE%d\n", 1);
     else
