@@ -290,7 +290,7 @@ void StrassenRecursiveImpl(double *O, double* A, double*B, int n, int pad_i, int
                     sum += a * b;
                     k_stride += B_stride;
                 }
-                if(i < true_n_i && j < true_n_j)
+                
                     O[o_stride + j] += sum;
             }
             i_stride += A_stride;
