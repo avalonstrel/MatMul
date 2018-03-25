@@ -281,7 +281,7 @@ int main(int argc, char *argv[]) {
     time_t end = clock();
     printf("R\n");
     for(int i=0;i<n*n;i++){
-        printf("%f",a[i] );
+        printf("%f ",a[i] );
     }
     printf("\n");
     printf("Time %f\n", (double)(end - start)/CLOCKS_PER_SEC);
@@ -301,7 +301,7 @@ int main(int argc, char *argv[]) {
     end = clock();
     printf("SR\n");
     for(int i=0;i<n*n;i++){
-        printf("%f",a[i] );
+        printf("%f ",a[i] );
     }
     printf("\n");
     printf("Time %f\n", (double)(end - start)/CLOCKS_PER_SEC);
