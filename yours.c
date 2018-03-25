@@ -137,7 +137,7 @@ void p1(double *p1, double *A, double *B, int n, int i_A, int j_A, int i_B, int 
     int h_i_stride = (i_B+n)*B_stride;
     for(int i=0; i < n; i++){
         for(int j=0; j < n; j++){
-            tmp[i*n+j] = B[f_i_stride+j_B+j+n] - B[+j_B+j+n];
+            tmp[i*n+j] = B[f_i_stride+j_B+j+n] - B[h_i_stride+j_B+j+n];
         }
         f_i_stride += B_stride;
         h_i_stride += B_stride;
