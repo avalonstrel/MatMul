@@ -30,6 +30,7 @@ void printMat(double *x , int n){
             printf("%f ", x[i*n+j]);
         }
     }
+    printf("\n");
 }
 double *Naive(int n, double* A, double *B){
     double *a;
