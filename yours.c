@@ -263,6 +263,7 @@ int main(int argc, char *argv[]) {
         printf("B FALSE%d\n", 0);
     
     double* a = (double *) malloc(n * n * sizeof(double));
+    a = generate(n);
     int block_inds[] = {0, n, 0, n}; 
     time_t start = clock();   
     YoursRecursive(a , A, B, n, 0, 0, 0, n);
