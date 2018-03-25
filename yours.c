@@ -105,7 +105,7 @@ void StrassenRecursiveImpl(double *a, double* A, double*B, int n, int pad_i, int
 //n n/2 
 //
 void p1(double *p1, double *A, double *B, int n, int pad, int i_A, int j_A, int i_B, int j_B,  int A_stride, int B_stride){
-    double * tmp = (double *) malloc(n * n * sizeof(double));
+    double * tmp = InitMatrix(n);
 
     double f,h;
     int true_n = n-pad;
@@ -123,7 +123,7 @@ void p1(double *p1, double *A, double *B, int n, int pad, int i_A, int j_A, int 
 }
 
 void p2(double *p2, double *A, double *B, int n, int pad, int i_A, int j_A, int i_B, int j_B,  int A_stride, int B_stride){
-    double * tmp = (double *) malloc(n * n * sizeof(double));
+    double * tmp = InitMatrix(n);
     double b;
     int true_n = n-pad;
     for(int i=0; i < n; i++){
@@ -135,7 +135,7 @@ void p2(double *p2, double *A, double *B, int n, int pad, int i_A, int j_A, int 
     StrassenRecursiveImpl(p2, tmp, B, n, 0, pad, pad, 0, 0, i_B + n, j_B + n, n, B_stride, n);
 }
 void p3(double *p3, double *A, double *B, int n, int pad, int i_A, int j_A, int i_B, int j_B,  int A_stride, int B_stride){
-    double * tmp = (double *) malloc(n * n * sizeof(double));
+    double * tmp = InitMatrix(n);
     double c, d;
     int true_n = n-pad;
     for(int i=0; i < n; i++){
@@ -148,7 +148,7 @@ void p3(double *p3, double *A, double *B, int n, int pad, int i_A, int j_A, int 
     StrassenRecursiveImpl(p3, tmp, B, n, 0, 0, 0, 0, 0,  i_B, j_B, n, B_stride, n);    
 }
 void p4(double *p4, double *A, double *B, int n, int pad, int i_A, int j_A, int i_B, int j_B,  int A_stride, int B_stride){
-    double * tmp = (double *) malloc(n * n * sizeof(double));
+    double * tmp = InitMatrix(n);
     double g;
     int true_n = n-pad;
     for(int i=0; i < n; i++){
@@ -162,7 +162,7 @@ void p4(double *p4, double *A, double *B, int n, int pad, int i_A, int j_A, int 
     StrassenRecursiveImpl(p4, A, tmp, n, pad, 0, pad, i_A + n, j_A + n, 0, 0, A_stride, n, n);
 }
 void p5(double *p5, double *A, double *B, int n, int pad, int i_A, int j_A, int i_B, int j_B,  int A_stride, int B_stride){
-    double * tmp = (double *) malloc(n * n * sizeof(double));
+    double * tmp = InitMatrix(n);
     double d;
     int true_n = n-pad;
     for(int i=0; i < n; i++){
@@ -171,7 +171,7 @@ void p5(double *p5, double *A, double *B, int n, int pad, int i_A, int j_A, int 
             tmp[i*n+j] = A[(i_A+i)*A_stride+j_A+j] + d;
         }
     }
-    double * tmp2 = (double *) malloc(n * n * sizeof(double));
+    double * tmp2 = InitMatrix(n);
     double h;
     for(int i=0; i < n; i++){
         for(int j=0; j < n; j++){
@@ -182,7 +182,7 @@ void p5(double *p5, double *A, double *B, int n, int pad, int i_A, int j_A, int 
     StrassenRecursiveImpl(p5, tmp, tmp2, n, 0, 0, 0, 0, 0, 0, 0, n, n, n);
 }
 void p6(double *p6, double *A, double *B, int n, int pad, int i_A, int j_A, int i_B, int j_B,  int A_stride, int B_stride){
-    double * tmp = (double *) malloc(n * n * sizeof(double));
+    double * tmp = InitMatrix(n);
     int true_n = n-pad;
     double b, d;
     for(int i=0; i < n; i++){
@@ -192,7 +192,7 @@ void p6(double *p6, double *A, double *B, int n, int pad, int i_A, int j_A, int 
             tmp[i*n+j] = b - d;
         }
     }
-    double * tmp2 = (double *) malloc(n * n * sizeof(double));
+    double * tmp2 = InitMatrix(n);
     double g,h;
     for(int i=0; i < n; i++){
         for(int j=0; j < n; j++){
@@ -204,7 +204,7 @@ void p6(double *p6, double *A, double *B, int n, int pad, int i_A, int j_A, int 
     StrassenRecursiveImpl(p6, tmp, tmp2, n, 0, 0, 0, 0, 0, 0, 0, n, n, n);
 }
 void p7(double *p7, double *A, double *B, int n, int pad, int i_A, int j_A, int i_B, int j_B,  int A_stride, int B_stride){
-    double * tmp = (double *) malloc(n * n * sizeof(double));
+    double * tmp = InitMatrix(n);
     int true_n = n-pad;
     double c;
     for(int i=0; i < n; i++){
@@ -213,7 +213,7 @@ void p7(double *p7, double *A, double *B, int n, int pad, int i_A, int j_A, int 
             tmp[i*n+j] = A[(i_A+i)*A_stride+j_A+j] - c;
         }
     }
-    double * tmp2 = (double *) malloc(n * n * sizeof(double));
+    double * tmp2 = InitMatrix(n);
     double  f;
     for(int i=0; i < n; i++){
         for(int j=0; j < n; j++){
