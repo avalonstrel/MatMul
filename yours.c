@@ -269,7 +269,7 @@ void MatSub2(double* A, double *B, int n_i, int n_j, int i_A, int j_A, int i_B, 
 void StrassenRecursiveImpl(double *O, double* A, double*B, int n,  int i_A, int j_A, int i_B, int j_B, int A_stride, int B_stride, int O_stride){
     if(n > BLOCK_SIZE){
 
-        int new_n = n/2
+        int new_n = n/2;
         double *p1_v = InitMatrix(new_n);
         p1(p1_v, A, B, new_n, i_A, j_A, i_B, j_B, A_stride, B_stride);
         double *p2_v = InitMatrix(new_n);
