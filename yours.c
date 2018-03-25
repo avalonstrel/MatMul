@@ -133,11 +133,14 @@ void StrassenRecursiveImpl(double *a, double* A, double*B, int n, int i_A, int j
 //
 void p1(double *p1, double *A, double *B, int n, int i_A, int j_A, int i_B, int j_B,  int A_stride, int B_stride){
     double * tmp = InitMatrix(n);
-
+    int f_i_stride = (i_B)*B_stride;
+    int h_i_stride = (i_B+n)*B_stride;
     for(int i=0; i < n; i++){
         for(int j=0; j < n; j++){
-            tmp[i*n+j] = B[(i_B+i)*B_stride+j_B+j+n] - B[(i_B+n+i)*B_stride+j_B+j+n];
+            tmp[i*n+j] = B[f_i_stride+j_B+j+n] - B[+j_B+j+n];
         }
+        f_i_stride += B_stride;
+        h_i_stride += B_stride;
     }
     StrassenRecursiveImpl(p1, A, tmp, n,  i_A, j_A, 0, 0, A_stride, n, n);
     
@@ -145,86 +148,109 @@ void p1(double *p1, double *A, double *B, int n, int i_A, int j_A, int i_B, int 
 
 void p2(double *p2, double *A, double *B, int n,  int i_A, int j_A, int i_B, int j_B,  int A_stride, int B_stride){
     double * tmp = InitMatrix(n);
-
+    int a_stride = (i_A)*A_stride;
+    //int B_stride = (i_A)*A_stride
     for(int i=0; i < n; i++){
         for(int j=0; j < n; j++){
-            tmp[i*n+j] = A[(i_A+i)*A_stride+j_A+j] + A[(i_A+i)*A_stride+j_A+j+n];
+            tmp[i*n+j] = A[a_stride+j_A+j] + A[a_stride+j_A+j+n];
         }
+        a_stride += A_stride;
     }
     StrassenRecursiveImpl(p2, tmp, B, n,   0, 0, i_B + n, j_B + n, n, B_stride, n);
 }
 void p3(double *p3, double *A, double *B, int n,  int i_A, int j_A, int i_B, int j_B,  int A_stride, int B_stride){
     double * tmp = InitMatrix(n);
-
+    int b_stride = (i_A+n)*A_stride;
     for(int i=0; i < n; i++){
         for(int j=0; j < n; j++){
-            tmp[i*n+j] = A[(i_A+n+i)*A_stride+j_A+j] + A[(i_A+n+i)*A_stride+j_A+j+n];
+            tmp[i*n+j] = A[b_stride+j_A+j] + A[b_stride+j_A+j+n];
         }
+        b_stride += A_stride;
     }
     StrassenRecursiveImpl(p3, tmp, B, n, 0, 0,  i_B, j_B, n, B_stride, n);    
 }
 void p4(double *p4, double *A, double *B, int n,  int i_A, int j_A, int i_B, int j_B,  int A_stride, int B_stride){
     double * tmp = InitMatrix(n);
-
+    int g_i_stride = (i_B+n)*B_stride;
+    int e_i_stride = (i_B)*B_stride;    
     for(int i=0; i < n; i++){
         for(int j=0; j < n; j++){
-            tmp[i*n+j] = B[(i_B+n+i)*B_stride+j_B+j] - B[(i_B+i)*B_stride+j_B+j];
+            tmp[i*n+j] = B[g_i_stride+j_B+j] - B[e_i_stride+j_B+j];
         }
+        g_i_stride += B_stride;
+        e_i_stride += B_stride;
     }
 
     StrassenRecursiveImpl(p4, A, tmp, n,  i_A + n, j_A + n, 0, 0, A_stride, n, n);
 }
 void p5(double *p5, double *A, double *B, int n,  int i_A, int j_A, int i_B, int j_B,  int A_stride, int B_stride){
     double * tmp = InitMatrix(n);
-    
+    int a_i_stride = (i_A)*A_stride;
+    int d_i_stride = (i_A+n)*A_stride;
     for(int i=0; i < n; i++){
         for(int j=0; j < n; j++){
             
-            tmp[i*n+j] = A[(i_A+i)*A_stride+j_A+j] + A[(i_A+n+i)*A_stride+j_A+n+j];
+            tmp[i*n+j] = A[a_i_stride+j_A+j] + A[d_i_stride+j_A+n+j];
         }
+        a_i_stride += A_stride;
+        d_i_stride += A_stride;
     }
     double * tmp2 = InitMatrix(n);
-    double h;
+    int e_i_stride = (i_B)*B_stride;
+    int h_i_stride = ((i_B+n)*B_stride);
     for(int i=0; i < n; i++){
         for(int j=0; j < n; j++){
             
-            tmp2[i*n+j] = B[(i_B+i)*B_stride+j_B+j] + B[(i_B+n+i)*B_stride+j_B+n+j];
+            tmp2[i*n+j] = B[e_i_stride+j_B+j] + B[h_i_stride+j_B+n+j];
         }
+        e_i_stride += B_stride;
+        h_i_stride += B_stride;
     }    
     StrassenRecursiveImpl(p5, tmp, tmp2, n,  0, 0, 0, 0, n, n, n);
 }
 void p6(double *p6, double *A, double *B, int n,  int i_A, int j_A, int i_B, int j_B,  int A_stride, int B_stride){
     double * tmp = InitMatrix(n);
-
+    int b_i_stride = (i_A)*A_stride;
+    int d_i_stride = (i_A+n)*A_stride;
     for(int i=0; i < n; i++){
         for(int j=0; j < n; j++){
 
-            tmp[i*n+j] = A[(i_A+i)*A_stride+j_A+n+j] - A[(i_A+n+i)*A_stride+j_A+n+j];
+            tmp[i*n+j] = A[b_i_stride+j_A+n+j] - A[d_i_stride+j_A+n+j];
         }
+        b_i_stride += A_stride;
+        d_i_stride += A_stride;
     }
     double * tmp2 = InitMatrix(n);
+    int g_i_stride = (i_B+n)*B_stride;
+    
     for(int i=0; i < n; i++){
         for(int j=0; j < n; j++){
 
-            tmp2[i*n+j] = B[(i_B+n+i)*B_stride+j_B+j] + B[(i_B+n+i)*B_stride+j_B+n+j];
+            tmp2[i*n+j] = B[g_i_stride+j_B+j] + B[g_i_stride+j_B+n+j];
         }
+        g_i_stride += B_stride;
     }    
     StrassenRecursiveImpl(p6, tmp, tmp2, n,  0, 0, 0, 0, n, n, n);
 }
 void p7(double *p7, double *A, double *B, int n,  int i_A, int j_A, int i_B, int j_B,  int A_stride, int B_stride){
     double * tmp = InitMatrix(n);
-
+    int a_i_stride = (i_A)*A_stride;
+    int c_i_stride = (i_A+n)*A_stride;
     for(int i=0; i < n; i++){
         for(int j=0; j < n; j++){
             
-            tmp[i*n+j] = A[(i_A+i)*A_stride+j_A+j] - A[(i_A+n+i)*A_stride+j_A+j];
+            tmp[i*n+j] = A[a_i_stride+j_A+j] - A[c_i_stride+j_A+j];
         }
+        a_i_stride += A_stride;
+        c_i_stride += A_stride;
     }
     double * tmp2 = InitMatrix(n);
+    int e_i_stride = (i_B)*B_stride;
     for(int i=0; i < n; i++){
         for(int j=0; j < n; j++){
-            tmp2[i*n+j] = B[(i_B+i)*B_stride+j_B+j] + B[(i_B+i)*B_stride+j_B+n+j];
+            tmp2[i*n+j] = B[e_i_stride+j_B+j] + B[e_i_stride+j_B+n+j];
         }
+        e_i_stride += B_stride;
     }    
     StrassenRecursiveImpl(p7, tmp, tmp2, n, 0, 0, 0, 0, n, n, n);
 }
