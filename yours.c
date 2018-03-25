@@ -45,7 +45,7 @@ double *YoursTransBlocked(int n, double *A, double *B) {
                         int m = 0;
                         int B_all_ind =  B_all_ind_;
                         while(m < block_size){
-                            sum += A[B_all_ind] * B_t[A_all_ind];
+                            sum += A[A_all_ind] * B_t[A_all_ind];
                             B_all_ind += n;
                             A_all_ind += 1;
                             m++;
