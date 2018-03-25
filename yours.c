@@ -263,7 +263,6 @@ int main(int argc, char *argv[]) {
         printf("B FALSE%d\n", 0);
     
     double* a = (double *) malloc(n * n * sizeof(double));
-    a = generate(n);
     int block_inds[] = {0, n, 0, n}; 
     time_t start = clock();   
     //YoursRecursive(a , A, B, n, 0, 0, 0, n);
@@ -274,10 +273,11 @@ int main(int argc, char *argv[]) {
         printf("R TRUE%d\n", 1);
     else
         printf("R FALSE%d\n", 0);
-    Y = (double *) malloc(n * n * sizeof(double));
+
+    //Y = (double *) malloc(n * n * sizeof(double));
     
     start = clock();   
-    StrassenRecursive(Y,A,B, n/2, 0, 0, 0, 0, n, n, n);
+    StrassenRecursive(Y, A,B, n/2, 0, 0, 0, 0, n, n, n);
     end = clock();
     
     printf("Time %f\n", (double)(end - start)/CLOCKS_PER_SEC);
