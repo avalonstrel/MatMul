@@ -236,7 +236,7 @@ void YoursRecursive(double* a, double *A, double *B, int n, int i, int j, int k,
                     sum += A[i_stride + k_] * B[k_*stride + j_];
                     
                 }
-                printf("i_stride+j_: %d ; %d \n", i_stride + j_ ,32*32);
+                //printf("i_stride+j_: %d ; %d \n", i_stride + j_ ,32*32);
                 a[i_stride + j_] += sum;
             }
             i_stride += stride;
@@ -275,10 +275,10 @@ int main(int argc, char *argv[]) {
     time_t end = clock();
 
     printf("Time %f\n", (double)(end - start)/CLOCKS_PER_SEC);
-    // if (check(Y, A, B, n))
-    //     printf("S TRUE%d\n", 1);
-    // else
-    //     printf("S FALSE%d\n", 0);
+    if (check(Y, A, B, n))
+        printf("S TRUE%d\n", 1);
+    else
+        printf("S FALSE%d\n", 0);
 
     // Y = (double *) malloc(n * n * sizeof(double));
     
