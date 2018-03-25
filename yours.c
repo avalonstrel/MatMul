@@ -351,9 +351,9 @@ double *YoursStrassenRecursive(int n, double *A, double *B){
     int padLen = getPadLen(n, BLOCK_SIZE);
     printf("pad %d", padLen);
     a = InitMatrix(padLen);
-    A = PadMat(A, n, padLen-n);
-    B = PadMat(B, n, padLen-n);
-    StrassenRecursiveImpl(a, A, B, padLen,  0, 0, 0, 0, padLen, padLen, padLen);
+    double *padA = PadMat(A, n, padLen-n);
+    double *padB = PadMat(B, n, padLen-n);
+    StrassenRecursiveImpl(a, padA, padB, padLen,  0, 0, 0, 0, padLen, padLen, padLen);
     double *r = InitMatrix(n);
     for(int i=0;i<n;i++){
         for(int j=0;j <n;j++){
