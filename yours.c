@@ -282,9 +282,10 @@ void YoursRecursiveImpl(double* a, double *A, double *B, int n, int i, int j, in
 }
 double * YoursRecursive(int n, double* A, double *B){
     double *a;
-    a = (double *) malloc(n * n * sizeof(double));
+    a = InitMatrix(n);
+
     time_t start = clock();
-    YoursRecursiveImpl(a , A, B, n, 0, 0, 0, n);
+    YoursRecursiveImpl(a, A, B, n, 0, 0, 0, n);
     time_t end = clock();
     printf("Time %f\n", (double)(end - start)/CLOCKS_PER_SEC);
     return a;
