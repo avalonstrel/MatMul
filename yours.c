@@ -6,7 +6,7 @@
 #include "time.h"
 
 
-#define BLOCK_SIZE 4
+#define BLOCK_SIZE 2
 
 //these are the implemented methods in 'handout.o' :
 
@@ -23,6 +23,13 @@ double * InitMatrix(int n){
         p[i] = 0.0;
     }
     return p;
+}
+void printMat(double *x , int n){
+    for(int i=0;i < n;i++){
+        for(int j=0;j<n;j++){
+            printf("%f ", x[i*n+j]);
+        }
+    }
 }
 double *Naive(int n, double* A, double *B){
     double *a;
@@ -277,6 +284,8 @@ void StrassenRecursiveImpl(double *O, double* A, double*B, int n, int pad_i_A, i
         p6(p6_v, A, B, new_n, pad, i_A, j_A, i_B, j_B, A_stride, B_stride);
         double *p7_v = InitMatrix(new_n);
         p7(p7_v, A, B, new_n, pad, i_A, j_A, i_B, j_B, A_stride, B_stride);
+        printMat(p1_v, new_n);
+        printMat(p2_v, new_n);
         MatAdd2(O, p5_v, new_n, new_n, 0, 0, 0, 0, O_stride, new_n);
         MatAdd2(O, p4_v, new_n, new_n, 0, 0, 0, 0, O_stride, new_n);
         MatAdd2(O, p6_v, new_n, new_n, 0, 0, 0, 0, O_stride, new_n);
