@@ -261,30 +261,32 @@ int main(int argc, char *argv[]) {
         printf("B TRUE%d\n", 1);
     else
         printf("B FALSE%d\n", 0);
-    
-    double* a = (double *) malloc(n * n * sizeof(double));
-    int block_inds[] = {0, n, 0, n}; 
+    Y = (double *) malloc(n * n * sizeof(double));
+    //double* a = (double *) malloc(n * n * sizeof(double));
+    //int block_inds[] = {0, n, 0, n};
+
     time_t start = clock();   
-    YoursRecursive(a , A, B, n, 0, 0, 0, n);
+    YoursRecursive(Y , A, B, n, 0, 0, 0, n);
     time_t end = clock();
 
     printf("Time %f\n", (double)(end - start)/CLOCKS_PER_SEC);
-    if (check(a, A, B, n))
-        printf("R TRUE%d\n", 1);
-    else
-        printf("R FALSE%d\n", 0);
-
-    //Y = (double *) malloc(n * n * sizeof(double));
-    
-    start = clock();   
-    StrassenRecursive(Y, A,B, n/2, 0, 0, 0, 0, n, n, n);
-    end = clock();
-    
-    printf("Time %f\n", (double)(end - start)/CLOCKS_PER_SEC);
     if (check(Y, A, B, n))
-        printf("R TRUE%d\n", 1);
+        printf("S TRUE%d\n", 1);
     else
-        printf("R FALSE%d\n", 0);
+        printf("S FALSE%d\n", 0);
+
+    // Y = (double *) malloc(n * n * sizeof(double));
+    
+    // start = clock();   
+    // StrassenRecursive(Y, A,B, n/2, 0, 0, 0, 0, n, n, n);
+    // end = clock();
+    
+    // printf("Time %f\n", (double)(end - start)/CLOCKS_PER_SEC);
+    // if (check(Y, A, B, n))
+    //     printf("R TRUE%d\n", 1);
+    // else
+    //     printf("R FALSE%d\n", 0);
+    //     
     free(A);
     free(B);
     free(Y);
