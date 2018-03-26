@@ -122,7 +122,7 @@ double *YoursBlocked(int n, double *A, double *B, int BLOCK_SIZE) {
     }
     
     clock_gettime(CLOCK_REALTIME, &time_end);
-    printf("Time :%llu.%09llu ns \t",(long long unsigned)time_end.tv_sec-time_start.tv_sec, (long long unsigned)time_end.tv_nsec-time_start.tv_nsec);
+    printf("Time :%llu.%09llu ns \t",time_end.tv_sec-time_start.tv_sec, time_end.tv_nsec-time_start.tv_nsec);
 // fill your code here, a is your output matrix
     return a;
 }
@@ -290,19 +290,6 @@ void StrassenRecursiveImpl(double *O, double* A, double*B, int n,  int i_A, int 
         double *p7_v = InitMatrix(new_n);
         p7(p7_v, A, B, new_n, i_A, j_A, i_B, j_B, A_stride, B_stride, b);
 
-        // MatAdd2(O, p5_v, new_n, new_n, 0, 0, 0, 0, O_stride, new_n);
-        // MatAdd2(O, p4_v, new_n, new_n, 0, 0, 0, 0, O_stride, new_n);
-        // MatAdd2(O, p6_v, new_n, new_n, 0, 0, 0, 0, O_stride, new_n);
-        // MatSub2(O, p2_v, new_n, new_n, 0, 0, 0, 0, O_stride, new_n);
-        // MatAdd2(O, p1_v, new_n, new_n-pad, 0, new_n, 0, 0, O_stride, new_n);
-        // MatAdd2(O, p2_v, new_n, new_n-pad, 0, new_n, 0, 0, O_stride, new_n);
-        // MatAdd2(O, p3_v, new_n-pad, new_n,  new_n, 0, 0, 0, O_stride, new_n);
-        // MatAdd2(O, p4_v, new_n-pad, new_n, new_n, 0, 0, 0, O_stride, new_n);
-        // MatAdd2(O, p5_v, new_n-pad, new_n-pad, new_n, new_n, 0, 0, O_stride, new_n);
-        // MatAdd2(O, p1_v, new_n-pad, new_n-pad, new_n, new_n, 0, 0, O_stride, new_n);
-        // MatSub2(O, p3_v, new_n-pad, new_n-pad, new_n, new_n, 0, 0, O_stride, new_n);
-        // MatSub2(O, p7_v, new_n-pad, new_n-pad, new_n, new_n, 0, 0, O_stride, new_n);
-        
         MatAdd(O, p5_v, new_n,  0, 0, 0, 0, O_stride, new_n);
         MatAdd(O, p4_v, new_n,  0, 0, 0, 0, O_stride, new_n);
         MatAdd(O, p6_v, new_n,  0, 0, 0, 0, O_stride, new_n);
@@ -326,11 +313,10 @@ void StrassenRecursiveImpl(double *O, double* A, double*B, int n,  int i_A, int 
                 sum = 0.0;
                 k_stride = (i_B )*B_stride;
                 for(int k = 0; k < n; k++){
-                    // a = i < n_pad_i_A && k < n_pad_j_A ? A[i_stride + j_A + k]:0;
-                    // b = j < n_pad_j_B && k < n_pad_i_B ? B[k_stride + j_B + j]:0;
+
                     sum += A[i_stride + j_A + k] * B[k_stride + j_B + j];
                     k_stride += B_stride;
-                    //printf("i,j,k,l:%d,%d,%d,%d",i_A+i, j_A+k, i_B+k, j_B+j);
+
                 }
                 O[o_stride + j] += sum;
                 
@@ -372,7 +358,7 @@ double *YoursRecursive(int n, double *A, double *B, int b){
     time_t end = clock();
 
     clock_gettime(CLOCK_REALTIME, &time_end);
-    printf("Time %llu.%09llu ns \t",(long long unsigned)time_end.tv_sec-time_start.tv_sec, (long long unsigned)time_end.tv_nsec-time_start.tv_nsec);
+    printf("Time %llu.%09llu s \t",time_end.tv_sec-time_start.tv_sec, time_end.tv_nsec-time_start.tv_nsec);
     return r;    
 }
 int test(int block_size, int n){
