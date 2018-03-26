@@ -399,6 +399,7 @@ int main(int argc, char *argv[]) {
         for(int j = 1000; j < 1099; j += 5){
             printf("block size: %d, matrix size %d",i, j);
             test(i, j);
+            printf("\n");
         }
     }
     return 0;
