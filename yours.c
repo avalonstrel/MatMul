@@ -410,8 +410,8 @@ int test(int block_size, int n){
 
 }
 int main(int argc, char *argv[]) {
-    for(int i = 16; i < 32; i+=16){
-        for(int j = 1000; j < 1010; j += 10){
+    for(int i = 16; i < 256; i+=16){
+        for(int j = 1000; j < 1099; j += 10){
             printf("block size: %d, matrix size %d\n",i, j);
             test(i, j);
             printf("\n");
