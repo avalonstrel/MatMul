@@ -365,7 +365,7 @@ double *PadMat(double *A, int n, int pad){
     }
     return r;
 }
-double *YoursStrassenRecursive(int n, double *A, double *B, int b){
+double *YoursRecursive(int n, double *A, double *B, int b){
     double *a;
 
     //printf("pad %d", padLen);
@@ -418,7 +418,7 @@ void YoursRecursiveImpl(double* a, double *A, double *B, int n, int i, int j, in
     }
 
 }
-double * YoursRecursive(int n, double* A, double *B, int b){
+double * YoursNaiveRecursive(int n, double* A, double *B, int b){
     double *a;
     int padLen = getPadLen(n, b);
    
@@ -461,17 +461,11 @@ int test(int block_size, int n){
         printf("B FALSE%d\n", 0);
 
     Y = YoursRecursive(n, A, B, block_size);
+
     if (check(Y, A, B, n))
         printf("R TRUE%d\n", 1);
     else
         printf("R FALSE%d\n", 0);
-
-    Y = YoursStrassenRecursive(n, A, B, block_size);
-
-    if (check(Y, A, B, n))
-        printf("SR TRUE%d\n", 1);
-    else
-        printf("SR FALSE%d\n", 0);
 
 
 
@@ -481,59 +475,59 @@ int test(int block_size, int n){
     free(Y);    
     return 0;
 }
-int main(int argc, char *argv[]){
-    int block_sizes[] = {32, 64, 128, 150, 200};
-    int ns[] = {1001,1007, 1023,1034,1046,1066,1088,1089};
-    for(int i=0; i < 8;i++){
-        for(int j =0;j < 5;j++){
-            printf("B:%d,n:%d\n",block_sizes[j], ns[i]);
-            test(block_sizes[j], ns[i]);
-        }
-    }
-    return 0;
-}
-// int main(int argc, char *argv[]) {
-//     int BLOCK_SIZE = 128;
-//     srand((unsigned int) time(NULL));
-//     int n = atoi(argv[1]);
-//     double *A, *B;
-//     A = generate(n);
-//     B = generate(n);
-
-//     double *Y;
-//     Y = (double *) malloc(n * n * sizeof(double));
-//     Y = generate(n);
-//     Y = Naive(n,A,B);
-
-//     if (check(Y, A, B, n))
-//         printf("N TRUE%d\n", 1);
-//     else
-//         printf("N FALSE%d\n", 0);
-
-//     Y = YoursBlocked(n,A,B, BLOCK_SIZE);
-
-//     if (check(Y, A, B, n))
-//         printf("B TRUE%d\n", 1);
-//     else
-//         printf("B FALSE%d\n", 0);
-
-//     // Y = YoursRecursive(n, A, B);
-//     // if (check(Y, A, B, n))
-//     //     printf("R TRUE%d\n", 1);
-//     // else
-//     //     printf("R FALSE%d\n", 0);
-
-//     Y = YoursStrassenRecursive(n, A, B, BLOCK_SIZE);
-
-//     if (check(Y, A, B, n))
-//         printf("SR TRUE%d\n", 1);
-//     else
-//         printf("SR FALSE%d\n", 0);
-
-
-
-
-//     free(A);
-//     free(B);
-//     free(Y);
+// int main(int argc, char *argv[]){
+//     int block_sizes[] = {32, 64, 128, 150, 200};
+//     int ns[] = {1001,1007, 1023,1034,1046,1066,1088,1089};
+//     for(int i=0; i < 8;i++){
+//         for(int j =0;j < 5;j++){
+//             printf("B:%d,n:%d\n",block_sizes[j], ns[i]);
+//             test(block_sizes[j], ns[i]);
+//         }
+//     }
+//     return 0;
 // }
+int main(int argc, char *argv[]) {
+    int BLOCK_SIZE = 128;
+    srand((unsigned int) time(NULL));
+    int n = atoi(argv[1]);
+    double *A, *B;
+    A = generate(n);
+    B = generate(n);
+
+    double *Y;
+    Y = (double *) malloc(n * n * sizeof(double));
+    Y = generate(n);
+    Y = Naive(n,A,B);
+
+    if (check(Y, A, B, n))
+        printf("N TRUE%d\n", 1);
+    else
+        printf("N FALSE%d\n", 0);
+
+    Y = YoursBlocked(n, A, B, BLOCK_SIZE);
+
+    if (check(Y, A, B, n))
+        printf("B TRUE%d\n", 1);
+    else
+        printf("B FALSE%d\n", 0);
+
+    // Y = YoursRecursive(n, A, B);
+    // if (check(Y, A, B, n))
+    //     printf("R TRUE%d\n", 1);
+    // else
+    //     printf("R FALSE%d\n", 0);
+
+    Y = YoursRecursive(n, A, B, BLOCK_SIZE);
+
+    if (check(Y, A, B, n))
+        printf("R TRUE%d\n", 1);
+    else
+        printf("R FALSE%d\n", 0);
+
+
+
+
+    free(A);
+    free(B);
+    free(Y);
+}
