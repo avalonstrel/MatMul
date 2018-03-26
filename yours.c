@@ -67,7 +67,7 @@ double *Naive(int n, double* A, double *B){
         }
     }
     clock_gettime(CLOCK_REALTIME, &time_end);
-    printf("Time %lu.%lu s \t",time_end.tv_sec-time_start.tv_sec, time_end.tv_nsec-time_start.tv_nsec);
+    printf("Time %u.%u s \t",time_end.tv_sec-time_start.tv_sec, time_end.tv_nsec-time_start.tv_nsec);
     return a;        
 }
 
@@ -122,7 +122,7 @@ double *YoursBlocked(int n, double *A, double *B, int BLOCK_SIZE) {
     }
     
     clock_gettime(CLOCK_REALTIME, &time_end);
-    printf("Time :%lu.%lu s \t", time_end.tv_sec-time_start.tv_sec, time_end.tv_nsec-time_start.tv_nsec);
+    printf("Time :%u.%u s \t", time_end.tv_sec-time_start.tv_sec, time_end.tv_nsec-time_start.tv_nsec);
 // fill your code here, a is your output matrix
     return a;
 }
