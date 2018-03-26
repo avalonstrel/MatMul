@@ -401,7 +401,7 @@ int test(int block_size, int n){
 
 }
 int main(int argc, char *argv[]) {
-    for(int i = 0; i < 256; i+=16){
+    for(int i = 16; i < 256; i+=16){
         for(int j = 1000; j < 1099; j += 5){
             test(i, j);
         }
