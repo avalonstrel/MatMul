@@ -54,8 +54,8 @@ double *Naive(int n, double* A, double *B){
     double *a;
     a = InitMatrix(n);
 
-    time_t start = clock();
-    
+    struct timespec time_start={0, 0}, time_end={0, 0};
+    clock_gettime(CLOCK_REALTIME, &time_start);
     double sum = 0.0;
     for(int i=0; i < n; i++){
         for(int j=0; j < n; j++){
@@ -66,8 +66,8 @@ double *Naive(int n, double* A, double *B){
             a[i*n+j] += sum;
         }
     }
-    time_t end = clock();
-    printf("Time %f\n", (double)(end - start)/CLOCKS_PER_SEC);
+    clock_gettime(CLOCK_REALTIME, &time_end);
+    printf("Time %ld s,%ld ns \t",time_end.tv_sec-time_start.tv_sec, time_end.tv_nsec-time_start.tv_nsec);
     return a;        
 }
 
@@ -75,8 +75,8 @@ double *YoursBlocked(int n, double *A, double *B, int BLOCK_SIZE) {
     double *a;
     a = InitMatrix(n);
 
-    time_t start = clock();
-
+    struct timespec time_start={0, 0}, time_end={0, 0};
+    clock_gettime(CLOCK_REALTIME, &time_start);
     if(n < BLOCK_SIZE){
         BLOCK_SIZE = n;
     }
@@ -121,8 +121,8 @@ double *YoursBlocked(int n, double *A, double *B, int BLOCK_SIZE) {
         }
     }
     
-    time_t end = clock();
-    printf("Time %f\t", (double)(end - start)/CLOCKS_PER_SEC);
+    clock_gettime(CLOCK_REALTIME, &time_end);
+    printf("Time %ld s,%ld ns \t",time_end.tv_sec-time_start.tv_sec, time_end.tv_nsec-time_start.tv_nsec);
 // fill your code here, a is your output matrix
     return a;
 }
@@ -366,13 +366,15 @@ double *PadMat(double *A, int n, int pad){
 }
 double *YoursRecursive(int n, double *A, double *B, int b){
     double *a;
-
+    int padLen = getPadLen(n, b);
+    a = InitMatrix(padLen);
     //printf("pad %d", padLen);
 
-    time_t start = clock();
-    int padLen = getPadLen(n, b);
+    struct timespec time_start={0, 0}, time_end={0, 0};
+    clock_gettime(CLOCK_REALTIME, &time_start);
    
-    a = InitMatrix(padLen);
+   
+    
     double *padA = PadMat(A, n, padLen-n);
     double *padB = PadMat(B, n, padLen-n);
     StrassenRecursiveImpl(a, padA, padB, padLen,  0, 0, 0, 0, padLen, padLen, padLen, b);
@@ -384,7 +386,8 @@ double *YoursRecursive(int n, double *A, double *B, int b){
     }
     time_t end = clock();
 
-    printf("Time %f\t", (double)(end - start)/CLOCKS_PER_SEC);
+    clock_gettime(CLOCK_REALTIME, &time_end);
+    printf("Time %ld s,%ld ns \t",time_end.tv_sec-time_start.tv_sec, time_end.tv_nsec-time_start.tv_nsec);
     return r;    
 }
 void YoursRecursiveImpl(double* a, double *A, double *B, int n, int i, int j, int k, int stride, int b) {
