@@ -1,0 +1,600 @@
+block size: 16, matrix size 1000
+Time 4.415053970 s 	B TRUE1
+Time 4.424333866 s 	R TRUE1
+
+block size: 16, matrix size 1010
+Time 4.341425707 s 	B TRUE1
+Time 4.443327869 s 	R TRUE1
+
+block size: 16, matrix size 1020
+Time 4.229701896 s 	B TRUE1
+Time 4.42597616 s 	R TRUE1
+
+block size: 16, matrix size 1030
+Time 4.127347808 s 	B TRUE1
+Time 7.986188598 s 	R TRUE1
+
+block size: 16, matrix size 1040
+Time 4.643829915 s 	B TRUE1
+Time 7.657580992 s 	R TRUE1
+
+block size: 16, matrix size 1050
+Time 4.477628329 s 	B TRUE1
+Time 7.484657672 s 	R TRUE1
+
+block size: 16, matrix size 1060
+Time 4.827883380 s 	B TRUE1
+Time 7.503654856 s 	R TRUE1
+
+block size: 16, matrix size 1070
+Time 4.797560306 s 	B TRUE1
+Time 7.329233533 s 	R TRUE1
+
+block size: 16, matrix size 1080
+Time 5.6040536 s 	B TRUE1
+Time 7.671018768 s 	R TRUE1
+
+block size: 16, matrix size 1090
+Time 5.58837963 s 	B TRUE1
+Time 8.972793891 s 	R TRUE1
+
+block size: 32, matrix size 1000
+Time 4.68372780 s 	B TRUE1
+Time 4.720351525 s 	R TRUE1
+
+block size: 32, matrix size 1010
+Time 4.150801277 s 	B TRUE1
+Time 4.92630516 s 	R TRUE1
+
+block size: 32, matrix size 1020
+Time 3.838210300 s 	B TRUE1
+Time 3.606240843 s 	R TRUE1
+
+block size: 32, matrix size 1030
+Time 3.965288010 s 	B TRUE1
+Time 4.768494337 s 	R TRUE1
+
+block size: 32, matrix size 1040
+Time 4.239032123 s 	B TRUE1
+Time 4.688554488 s 	R TRUE1
+
+block size: 32, matrix size 1050
+Time 4.653127428 s 	B TRUE1
+Time 4.839136763 s 	R TRUE1
+
+block size: 32, matrix size 1060
+Time 4.294699868 s 	B TRUE1
+Time 5.561467468 s 	R TRUE1
+
+block size: 32, matrix size 1070
+Time 5.61700838 s 	B TRUE1
+Time 5.775683775 s 	R TRUE1
+
+block size: 32, matrix size 1080
+Time 5.339959068 s 	B TRUE1
+Time 6.218767735 s 	R TRUE1
+
+block size: 32, matrix size 1090
+Time 5.409295101 s 	B TRUE1
+Time 6.100853178 s 	R TRUE1
+
+block size: 48, matrix size 1000
+Time 4.302947408 s 	B TRUE1
+Time 3.768945353 s 	R TRUE1
+
+block size: 48, matrix size 1010
+Time 4.360605283 s 	B TRUE1
+Time 3.704158362 s 	R TRUE1
+
+block size: 48, matrix size 1020
+Time 4.608698287 s 	B TRUE1
+Time 3.767543434 s 	R TRUE1
+
+block size: 48, matrix size 1030
+Time 4.654293826 s 	B TRUE1
+Time 4.559920919 s 	R TRUE1
+
+block size: 48, matrix size 1040
+Time 4.749699595 s 	B TRUE1
+Time 4.492874296 s 	R TRUE1
+
+block size: 48, matrix size 1050
+Time 5.115527522 s 	B TRUE1
+Time 4.506120598 s 	R TRUE1
+
+block size: 48, matrix size 1060
+Time 5.362249447 s 	B TRUE1
+Time 4.541503986 s 	R TRUE1
+
+block size: 48, matrix size 1070
+Time 4.642814604 s 	B TRUE1
+Time 4.87821700 s 	R TRUE1
+
+block size: 48, matrix size 1080
+Time 4.580495618 s 	B TRUE1
+Time 4.409585531 s 	R TRUE1
+
+block size: 48, matrix size 1090
+Time 4.688686163 s 	B TRUE1
+Time 4.771409370 s 	R TRUE1
+
+block size: 64, matrix size 1000
+Time 3.658104210 s 	B TRUE1
+Time 3.172674356 s 	R TRUE1
+
+block size: 64, matrix size 1010
+Time 3.715595184 s 	B TRUE1
+Time 3.476278288 s 	R TRUE1
+
+block size: 64, matrix size 1020
+Time 4.176670159 s 	B TRUE1
+Time 3.211277713 s 	R TRUE1
+
+block size: 64, matrix size 1030
+Time 4.63920223 s 	B TRUE1
+Time 3.748780135 s 	R TRUE1
+
+block size: 64, matrix size 1040
+Time 4.853907107 s 	B TRUE1
+Time 4.792143460 s 	R TRUE1
+
+block size: 64, matrix size 1050
+Time 4.242330195 s 	B TRUE1
+Time 4.839734086 s 	R TRUE1
+
+block size: 64, matrix size 1060
+Time 4.955417966 s 	B TRUE1
+Time 4.42484252 s 	R TRUE1
+
+block size: 64, matrix size 1070
+Time 4.498964250 s 	B TRUE1
+Time 4.381961398 s 	R TRUE1
+
+block size: 64, matrix size 1080
+Time 4.536798851 s 	B TRUE1
+Time 4.63898404 s 	R TRUE1
+
+block size: 64, matrix size 1090
+Time 4.849789951 s 	B TRUE1
+Time 4.833009605 s 	R TRUE1
+
+block size: 80, matrix size 1000
+Time 3.680412492 s 	B TRUE1
+Time 3.379796004 s 	R TRUE1
+
+block size: 80, matrix size 1010
+Time 3.854979540 s 	B TRUE1
+Time 4.294431871 s 	R TRUE1
+
+block size: 80, matrix size 1020
+Time 4.399853721 s 	B TRUE1
+Time 3.560268954 s 	R TRUE1
+
+block size: 80, matrix size 1030
+Time 4.757741343 s 	B TRUE1
+Time 3.961432905 s 	R TRUE1
+
+block size: 80, matrix size 1040
+Time 4.820939429 s 	B TRUE1
+Time 3.862749088 s 	R TRUE1
+
+block size: 80, matrix size 1050
+Time 4.939387258 s 	B TRUE1
+Time 3.883085810 s 	R TRUE1
+
+block size: 80, matrix size 1060
+Time 5.224521170 s 	B TRUE1
+Time 4.184603332 s 	R TRUE1
+
+block size: 80, matrix size 1070
+Time 4.432249542 s 	B TRUE1
+Time 4.60536958 s 	R TRUE1
+
+block size: 80, matrix size 1080
+Time 4.863254267 s 	B TRUE1
+Time 4.166108626 s 	R TRUE1
+
+block size: 80, matrix size 1090
+Time 4.722339877 s 	B TRUE1
+Time 4.673069927 s 	R TRUE1
+
+block size: 96, matrix size 1000
+Time 3.667060113 s 	B TRUE1
+Time 3.890551721 s 	R TRUE1
+
+block size: 96, matrix size 1010
+Time 5.3359485 s 	B TRUE1
+Time 3.534262656 s 	R TRUE1
+
+block size: 96, matrix size 1020
+Time 4.131173576 s 	B TRUE1
+Time 3.626296532 s 	R TRUE1
+
+block size: 96, matrix size 1030
+Time 4.239870694 s 	B TRUE1
+Time 3.761510455 s 	R TRUE1
+
+block size: 96, matrix size 1040
+Time 4.938995652 s 	B TRUE1
+Time 3.810944496 s 	R TRUE1
+
+block size: 96, matrix size 1050
+Time 4.449550102 s 	B TRUE1
+Time 4.12973858 s 	R TRUE1
+
+block size: 96, matrix size 1060
+Time 4.361216381 s 	B TRUE1
+Time 3.853751301 s 	R TRUE1
+
+block size: 96, matrix size 1070
+Time 5.299924150 s 	B TRUE1
+Time 5.503986951 s 	R TRUE1
+
+block size: 96, matrix size 1080
+Time 5.356069510 s 	B TRUE1
+Time 4.56565741 s 	R TRUE1
+
+block size: 96, matrix size 1090
+Time 5.514976125 s 	B TRUE1
+Time 4.648261389 s 	R TRUE1
+
+block size: 112, matrix size 1000
+Time 3.805579052 s 	B TRUE1
+Time 3.488035369 s 	R TRUE1
+
+block size: 112, matrix size 1010
+Time 4.84290214 s 	B TRUE1
+Time 3.403887619 s 	R TRUE1
+
+block size: 112, matrix size 1020
+Time 4.405700782 s 	B TRUE1
+Time 3.628236436 s 	R TRUE1
+
+block size: 112, matrix size 1030
+Time 4.708329793 s 	B TRUE1
+Time 3.801292130 s 	R TRUE1
+
+block size: 112, matrix size 1040
+Time 4.23948982 s 	B TRUE1
+Time 3.896408491 s 	R TRUE1
+
+block size: 112, matrix size 1050
+Time 4.467640977 s 	B TRUE1
+Time 3.853917579 s 	R TRUE1
+
+block size: 112, matrix size 1060
+Time 4.573915264 s 	B TRUE1
+Time 4.263914719 s 	R TRUE1
+
+block size: 112, matrix size 1070
+Time 4.810547781 s 	B TRUE1
+Time 4.224593206 s 	R TRUE1
+
+block size: 112, matrix size 1080
+Time 4.867493757 s 	B TRUE1
+Time 4.81814835 s 	R TRUE1
+
+block size: 112, matrix size 1090
+Time 4.823203728 s 	B TRUE1
+Time 4.375316056 s 	R TRUE1
+
+block size: 128, matrix size 1000
+Time 4.229781744 s 	B TRUE1
+Time 3.343231674 s 	R TRUE1
+
+block size: 128, matrix size 1010
+Time 3.731516991 s 	B TRUE1
+Time 4.507433832 s 	R TRUE1
+
+block size: 128, matrix size 1020
+Time 4.686010535 s 	B TRUE1
+Time 3.796278437 s 	R TRUE1
+
+block size: 128, matrix size 1030
+Time 4.207537212 s 	B TRUE1
+Time 3.496896275 s 	R TRUE1
+
+block size: 128, matrix size 1040
+Time 4.178690836 s 	B TRUE1
+Time 3.927779604 s 	R TRUE1
+
+block size: 128, matrix size 1050
+Time 4.441882273 s 	B TRUE1
+Time 3.766003739 s 	R TRUE1
+
+block size: 128, matrix size 1060
+Time 4.819244861 s 	B TRUE1
+Time 4.185743841 s 	R TRUE1
+
+block size: 128, matrix size 1070
+Time 4.925303202 s 	B TRUE1
+Time 4.353059734 s 	R TRUE1
+
+block size: 128, matrix size 1080
+Time 5.265084726 s 	B TRUE1
+Time 4.35818914 s 	R TRUE1
+
+block size: 128, matrix size 1090
+Time 5.393284730 s 	B TRUE1
+Time 4.973819793 s 	R TRUE1
+
+block size: 144, matrix size 1000
+Time 3.953361455 s 	B TRUE1
+Time 3.535968047 s 	R TRUE1
+
+block size: 144, matrix size 1010
+Time 3.778096718 s 	B TRUE1
+Time 3.620027312 s 	R TRUE1
+
+block size: 144, matrix size 1020
+Time 3.948521186 s 	B TRUE1
+Time 3.743259929 s 	R TRUE1
+
+block size: 144, matrix size 1030
+Time 4.681491862 s 	B TRUE1
+Time 3.532722901 s 	R TRUE1
+
+block size: 144, matrix size 1040
+Time 4.865844382 s 	B TRUE1
+Time 3.624606550 s 	R TRUE1
+
+block size: 144, matrix size 1050
+Time 4.372670214 s 	B TRUE1
+Time 3.794460777 s 	R TRUE1
+
+block size: 144, matrix size 1060
+Time 4.859019726 s 	B TRUE1
+Time 4.510817154 s 	R TRUE1
+
+block size: 144, matrix size 1070
+Time 5.413862485 s 	B TRUE1
+Time 5.67777392 s 	R TRUE1
+
+block size: 144, matrix size 1080
+Time 5.144224092 s 	B TRUE1
+Time 4.642559708 s 	R TRUE1
+
+block size: 144, matrix size 1090
+Time 4.964692895 s 	B TRUE1
+Time 4.132063554 s 	R TRUE1
+
+block size: 160, matrix size 1000
+Time 3.781875792 s 	B TRUE1
+Time 3.446041925 s 	R TRUE1
+
+block size: 160, matrix size 1010
+Time 3.876266093 s 	B TRUE1
+Time 3.588428051 s 	R TRUE1
+
+block size: 160, matrix size 1020
+Time 3.955434359 s 	B TRUE1
+Time 3.965301750 s 	R TRUE1
+
+block size: 160, matrix size 1030
+Time 4.554822549 s 	B TRUE1
+Time 3.501533426 s 	R TRUE1
+
+block size: 160, matrix size 1040
+Time 4.137998841 s 	B TRUE1
+Time 3.763778974 s 	R TRUE1
+
+block size: 160, matrix size 1050
+Time 4.234649996 s 	B TRUE1
+Time 3.998985542 s 	R TRUE1
+
+block size: 160, matrix size 1060
+Time 4.410086532 s 	B TRUE1
+Time 4.24324087 s 	R TRUE1
+
+block size: 160, matrix size 1070
+Time 4.628329431 s 	B TRUE1
+Time 3.893645286 s 	R TRUE1
+
+block size: 160, matrix size 1080
+Time 5.74145303 s 	B TRUE1
+Time 3.957400364 s 	R TRUE1
+
+block size: 160, matrix size 1090
+Time 5.407770684 s 	B TRUE1
+Time 4.113543296 s 	R TRUE1
+
+block size: 176, matrix size 1000
+Time 4.97231217 s 	B TRUE1
+Time 3.189404332 s 	R TRUE1
+
+block size: 176, matrix size 1010
+Time 4.48352591 s 	B TRUE1
+Time 3.590347230 s 	R TRUE1
+
+block size: 176, matrix size 1020
+Time 4.618067159 s 	B TRUE1
+Time 3.970306390 s 	R TRUE1
+
+block size: 176, matrix size 1030
+Time 4.681000117 s 	B TRUE1
+Time 3.789787408 s 	R TRUE1
+
+block size: 176, matrix size 1040
+Time 4.223478249 s 	B TRUE1
+Time 3.584694069 s 	R TRUE1
+
+block size: 176, matrix size 1050
+Time 4.311775340 s 	B TRUE1
+Time 3.539586908 s 	R TRUE1
+
+block size: 176, matrix size 1060
+Time 4.426275627 s 	B TRUE1
+Time 3.684338240 s 	R TRUE1
+
+block size: 176, matrix size 1070
+Time 4.452331246 s 	B TRUE1
+Time 3.699484071 s 	R TRUE1
+
+block size: 176, matrix size 1080
+Time 4.558286473 s 	B TRUE1
+Time 3.683959625 s 	R TRUE1
+
+block size: 176, matrix size 1090
+Time 4.729568804 s 	B TRUE1
+Time 3.949200659 s 	R TRUE1
+
+block size: 192, matrix size 1000
+Time 3.680594115 s 	B TRUE1
+Time 3.39177342 s 	R TRUE1
+
+block size: 192, matrix size 1010
+Time 3.847694491 s 	B TRUE1
+Time 3.624123996 s 	R TRUE1
+
+block size: 192, matrix size 1020
+Time 3.770231781 s 	B TRUE1
+Time 3.778024123 s 	R TRUE1
+
+block size: 192, matrix size 1030
+Time 4.582225715 s 	B TRUE1
+Time 3.230961815 s 	R TRUE1
+
+block size: 192, matrix size 1040
+Time 4.18175600 s 	B TRUE1
+Time 3.291163486 s 	R TRUE1
+
+block size: 192, matrix size 1050
+Time 4.324502123 s 	B TRUE1
+Time 3.707223552 s 	R TRUE1
+
+block size: 192, matrix size 1060
+Time 4.143181410 s 	B TRUE1
+Time 4.178130755 s 	R TRUE1
+
+block size: 192, matrix size 1070
+Time 4.941390853 s 	B TRUE1
+Time 4.43268599 s 	R TRUE1
+
+block size: 192, matrix size 1080
+Time 5.267314366 s 	B TRUE1
+Time 4.869022192 s 	R TRUE1
+
+block size: 192, matrix size 1090
+Time 5.382839511 s 	B TRUE1
+Time 4.449412298 s 	R TRUE1
+
+block size: 208, matrix size 1000
+Time 4.147258509 s 	B TRUE1
+Time 3.491121108 s 	R TRUE1
+
+block size: 208, matrix size 1010
+Time 4.286387278 s 	B TRUE1
+Time 4.106203538 s 	R TRUE1
+
+block size: 208, matrix size 1020
+Time 4.390785885 s 	B TRUE1
+Time 3.797399092 s 	R TRUE1
+
+block size: 208, matrix size 1030
+Time 4.580713510 s 	B TRUE1
+Time 3.718566491 s 	R TRUE1
+
+block size: 208, matrix size 1040
+Time 4.697652315 s 	B TRUE1
+Time 3.729034371 s 	R TRUE1
+
+block size: 208, matrix size 1050
+Time 4.217372928 s 	B TRUE1
+Time 3.761699296 s 	R TRUE1
+
+block size: 208, matrix size 1060
+Time 4.617144480 s 	B TRUE1
+Time 3.484536649 s 	R TRUE1
+
+block size: 208, matrix size 1070
+Time 4.456549573 s 	B TRUE1
+Time 3.492005418 s 	R TRUE1
+
+block size: 208, matrix size 1080
+Time 4.629449156 s 	B TRUE1
+Time 3.980414756 s 	R TRUE1
+
+block size: 208, matrix size 1090
+Time 4.788962735 s 	B TRUE1
+Time 4.148791743 s 	R TRUE1
+
+block size: 224, matrix size 1000
+Time 3.624484090 s 	B TRUE1
+Time 2.929705423 s 	R TRUE1
+
+block size: 224, matrix size 1010
+Time 3.596444910 s 	B TRUE1
+Time 3.530968961 s 	R TRUE1
+
+block size: 224, matrix size 1020
+Time 3.868860358 s 	B TRUE1
+Time 3.659538809 s 	R TRUE1
+
+block size: 224, matrix size 1030
+Time 3.998361758 s 	B TRUE1
+Time 3.355962890 s 	R TRUE1
+
+block size: 224, matrix size 1040
+Time 4.121231021 s 	B TRUE1
+Time 3.136491040 s 	R TRUE1
+
+block size: 224, matrix size 1050
+Time 4.166036334 s 	B TRUE1
+Time 3.661448407 s 	R TRUE1
+
+block size: 224, matrix size 1060
+Time 4.723963392 s 	B TRUE1
+Time 3.538309115 s 	R TRUE1
+
+block size: 224, matrix size 1070
+Time 4.321957626 s 	B TRUE1
+Time 3.588686286 s 	R TRUE1
+
+block size: 224, matrix size 1080
+Time 5.322451014 s 	B TRUE1
+Time 4.331755020 s 	R TRUE1
+
+block size: 224, matrix size 1090
+Time 4.663224885 s 	B TRUE1
+Time 4.37464392 s 	R TRUE1
+
+block size: 240, matrix size 1000
+Time 3.578800175 s 	B TRUE1
+Time 3.315976023 s 	R TRUE1
+
+block size: 240, matrix size 1010
+Time 3.627173378 s 	B TRUE1
+Time 3.474605540 s 	R TRUE1
+
+block size: 240, matrix size 1020
+Time 3.876130463 s 	B TRUE1
+Time 3.450735068 s 	R TRUE1
+
+block size: 240, matrix size 1030
+Time 3.897634426 s 	B TRUE1
+Time 3.231103488 s 	R TRUE1
+
+block size: 240, matrix size 1040
+Time 4.315568737 s 	B TRUE1
+Time 3.267225437 s 	R TRUE1
+
+block size: 240, matrix size 1050
+Time 4.199675497 s 	B TRUE1
+Time 3.528027332 s 	R TRUE1
+
+block size: 240, matrix size 1060
+Time 4.231370117 s 	B TRUE1
+Time 3.676784205 s 	R TRUE1
+
+block size: 240, matrix size 1070
+Time 4.541886392 s 	B TRUE1
+Time 3.495236253 s 	R TRUE1
+
+block size: 240, matrix size 1080
+Time 4.575030776 s 	B TRUE1
+Time 3.875701220 s 	R TRUE1
+
+block size: 240, matrix size 1090
+Time 4.825769365 s 	B TRUE1
+Time 3.818400801 s 	R TRUE1
+
