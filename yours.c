@@ -67,7 +67,7 @@ double *Naive(int n, double* A, double *B){
         }
     }
     clock_gettime(CLOCK_REALTIME, &time_end);
-    printf("Time %ld s,%ld ns \t",time_end.tv_sec-time_start.tv_sec, time_end.tv_nsec-time_start.tv_nsec);
+    printf("Time %lld s,%lld ns \t",time_end.tv_sec-time_start.tv_sec, time_end.tv_nsec-time_start.tv_nsec);
     return a;        
 }
 
@@ -122,7 +122,7 @@ double *YoursBlocked(int n, double *A, double *B, int BLOCK_SIZE) {
     }
     
     clock_gettime(CLOCK_REALTIME, &time_end);
-    printf("Time %ld s,%ld ns \t",time_end.tv_sec-time_start.tv_sec, time_end.tv_nsec-time_start.tv_nsec);
+    printf("Time %lld s,%lld ns \t",time_end.tv_sec-time_start.tv_sec, time_end.tv_nsec-time_start.tv_nsec);
 // fill your code here, a is your output matrix
     return a;
 }
@@ -387,7 +387,7 @@ double *YoursRecursive(int n, double *A, double *B, int b){
     time_t end = clock();
 
     clock_gettime(CLOCK_REALTIME, &time_end);
-    printf("Time %ld s,%ld ns \t",time_end.tv_sec-time_start.tv_sec, time_end.tv_nsec-time_start.tv_nsec);
+    printf("Time %lld s,%lld ns \t",time_end.tv_sec-time_start.tv_sec, time_end.tv_nsec-time_start.tv_nsec);
     return r;    
 }
 void YoursRecursiveImpl(double* a, double *A, double *B, int n, int i, int j, int k, int stride, int b) {
