@@ -358,7 +358,7 @@ double *YoursRecursive(int n, double *A, double *B, int b){
     time_t end = clock();
 
     clock_gettime(CLOCK_REALTIME, &time_end);
-    printf("Time %llu.%09llu s \t",time_end.tv_sec-time_start.tv_sec, time_end.tv_nsec-time_start.tv_nsec);
+    printf("Time %llu.%llu s \t",time_end.tv_sec-time_start.tv_sec, time_end.tv_nsec-time_start.tv_nsec);
     return r;    
 }
 int test(int block_size, int n){
