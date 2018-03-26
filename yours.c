@@ -67,7 +67,7 @@ double *Naive(int n, double* A, double *B){
         }
     }
     clock_gettime(CLOCK_REALTIME, &time_end);
-    printf("Time %llu s,%llu ns \t",(long long unsigned)time_end.tv_sec-time_start.tv_sec, (long long unsigned)time_end.tv_nsec-time_start.tv_nsec);
+    printf("Time %llu.%09llu s \t",(long long unsigned)time_end.tv_sec-time_start.tv_sec, (long long unsigned)time_end.tv_nsec-time_start.tv_nsec);
     return a;        
 }
 
@@ -122,7 +122,7 @@ double *YoursBlocked(int n, double *A, double *B, int BLOCK_SIZE) {
     }
     
     clock_gettime(CLOCK_REALTIME, &time_end);
-    printf("Time %llu s,%llu ns \t",(long long unsigned)time_end.tv_sec-time_start.tv_sec, (long long unsigned)time_end.tv_nsec-time_start.tv_nsec);
+    printf("Time :%llu.%09llu ns \t",(long long unsigned)time_end.tv_sec-time_start.tv_sec, (long long unsigned)time_end.tv_nsec-time_start.tv_nsec);
 // fill your code here, a is your output matrix
     return a;
 }
@@ -372,15 +372,11 @@ double *YoursRecursive(int n, double *A, double *B, int b){
     time_t end = clock();
 
     clock_gettime(CLOCK_REALTIME, &time_end);
-    printf("Time %llu s,%llu ns \t",(long long unsigned)time_end.tv_sec-time_start.tv_sec, (long long unsigned)time_end.tv_nsec-time_start.tv_nsec);
+    printf("Time %llu.%09llu ns \t",(long long unsigned)time_end.tv_sec-time_start.tv_sec, (long long unsigned)time_end.tv_nsec-time_start.tv_nsec);
     return r;    
 }
+int test(int block_size, int n){
 
-
-int main(int argc, char *argv[]) {
-    int BLOCK_SIZE = 128;
-    srand((unsigned int) time(NULL));
-    int n = atoi(argv[1]);
     double *A, *B;
     A = generate(n);
     B = generate(n);
@@ -388,27 +384,21 @@ int main(int argc, char *argv[]) {
     double *Y;
     Y = (double *) malloc(n * n * sizeof(double));
     Y = generate(n);
-    // Y = Naive(n,A,B);
+    Y = Naive(n,A,B);
 
-    // if (check(Y, A, B, n))
-    //     printf("N TRUE%d\n", 1);
-    // else
-    //     printf("N FALSE%d\n", 0);
+    if (check(Y, A, B, n))
+        printf("N TRUE%d\n", 1);
+    else
+        printf("N FALSE%d\n", 0);
 
-    Y = YoursBlocked(n, A, B, BLOCK_SIZE);
+    Y = YoursBlocked(n,A,B, block_size);
 
     if (check(Y, A, B, n))
         printf("B TRUE%d\n", 1);
     else
         printf("B FALSE%d\n", 0);
 
-    // Y = YoursRecursive(n, A, B);
-    // if (check(Y, A, B, n))
-    //     printf("R TRUE%d\n", 1);
-    // else
-    //     printf("R FALSE%d\n", 0);
-
-    Y = YoursRecursive(n, A, B, BLOCK_SIZE);
+    Y = YoursRecursive(n, A, B, block_size);
 
     if (check(Y, A, B, n))
         printf("R TRUE%d\n", 1);
@@ -420,5 +410,61 @@ int main(int argc, char *argv[]) {
 
     free(A);
     free(B);
-    free(Y);
+    free(Y);    
+    return 0;
+
 }
+int main(int argc, char *argv[]) {
+    for(int i = 0; i < 256; i+=16){
+        for(int j = 1000; j < 1099; j += 5){
+            test(i, j);
+        }
+    }
+    return 0;
+}
+
+// int main(int argc, char *argv[]) {
+//     int BLOCK_SIZE = 128;
+//     srand((unsigned int) time(NULL));
+//     int n = atoi(argv[1]);
+//     double *A, *B;
+//     A = generate(n);
+//     B = generate(n);
+
+//     double *Y;
+//     Y = (double *) malloc(n * n * sizeof(double));
+//     Y = generate(n);
+//     // Y = Naive(n,A,B);
+
+//     // if (check(Y, A, B, n))
+//     //     printf("N TRUE%d\n", 1);
+//     // else
+//     //     printf("N FALSE%d\n", 0);
+
+//     Y = YoursBlocked(n, A, B, BLOCK_SIZE);
+
+//     if (check(Y, A, B, n))
+//         printf("B TRUE%d\n", 1);
+//     else
+//         printf("B FALSE%d\n", 0);
+
+//     // Y = YoursRecursive(n, A, B);
+//     // if (check(Y, A, B, n))
+//     //     printf("R TRUE%d\n", 1);
+//     // else
+//     //     printf("R FALSE%d\n", 0);
+
+//     Y = YoursRecursive(n, A, B, BLOCK_SIZE);
+
+//     if (check(Y, A, B, n))
+//         printf("R TRUE%d\n", 1);
+//     else
+//         printf("R FALSE%d\n", 0);
+
+
+
+
+//     free(A);
+//     free(B);
+//     free(Y);
+// }
