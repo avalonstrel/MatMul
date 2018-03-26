@@ -76,14 +76,13 @@ double *YoursBlocked(int n, double *A, double *B, int BLOCK_SIZE) {
     a = InitMatrix(n);
 
     time_t start = clock();
-    unsigned int i_block_size = BLOCK_SIZE;
+
+    if(n < BLOCK_SIZE){
+        BLOCK_SIZE = n;
+    }
+        unsigned int i_block_size = BLOCK_SIZE;
     unsigned int j_block_size = BLOCK_SIZE;
     unsigned int k_block_size = BLOCK_SIZE;
-    if(n < i_block_size){
-        i_block_size = n;
-        j_block_size = n;
-        k_block_size = n;
-    }
     double sum = 0.0;
     int i_block_num = (n)/i_block_size + 1;
     int j_block_num = (n)/j_block_size + 1;
