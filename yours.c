@@ -122,7 +122,7 @@ double *YoursBlocked(int n, double *A, double *B, int BLOCK_SIZE) {
     }
     
     clock_gettime(CLOCK_REALTIME, &time_end);
-    printf("Time :%llu.%llu ns \t",(long long unsigned)time_end.tv_sec-time_start.tv_sec, (long long unsigned)time_end.tv_nsec-time_start.tv_nsec);
+    printf("Time :%llu.%llu ns \t", time_end.tv_sec-time_start.tv_sec, time_end.tv_nsec-time_start.tv_nsec);
 // fill your code here, a is your output matrix
     return a;
 }
@@ -358,7 +358,7 @@ double *YoursRecursive(int n, double *A, double *B, int b){
     time_t end = clock();
 
     clock_gettime(CLOCK_REALTIME, &time_end);
-    printf("Time %llu.%llu s \t",(long long unsigned)time_end.tv_sec-time_start.tv_sec, (long long unsigned)time_end.tv_nsec-time_start.tv_nsec);
+    printf("Time :%llu.%llu s \t", time_end.tv_sec-time_start.tv_sec, time_end.tv_nsec-time_start.tv_nsec);
     return r;    
 }
 int test(int block_size, int n){
@@ -370,12 +370,6 @@ int test(int block_size, int n){
     double *Y;
     Y = (double *) malloc(n * n * sizeof(double));
     Y = generate(n);
-    Y = Naive(n,A,B);
-
-    if (check(Y, A, B, n))
-        printf("N TRUE%d\n", 1);
-    else
-        printf("N FALSE%d\n", 0);
 
     Y = YoursBlocked(n,A,B, block_size);
 
@@ -403,6 +397,7 @@ int test(int block_size, int n){
 int main(int argc, char *argv[]) {
     for(int i = 16; i < 256; i+=16){
         for(int j = 1000; j < 1099; j += 5){
+            printf("block size: %d, matrix size %d",i, j);
             test(i, j);
         }
     }
