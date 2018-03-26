@@ -426,10 +426,16 @@ double * YoursRecursive(int n, double* A, double *B, int b){
     double *padA = PadMat(A, n, padLen-n);
     double *padB = PadMat(B, n, padLen-n);
     time_t start = clock();
-    YoursRecursiveImpl(a, A, B, n, 0, 0, 0, n, b);
+    YoursRecursiveImpl(a, padA, padB, padLen, 0, 0, 0, padLen, b);
+    double *r = InitMatrix(n);
+    for(int i=0;i<n;i++){
+        for(int j=0;j <n;j++){
+            r[i*n+j] = a[i*(padLen)+j];
+        }
+    }
     time_t end = clock();
     printf("Time :%f\t", (double)(end - start)/CLOCKS_PER_SEC);
-    return a;
+    return r;
 }
 
 int test(int block_size, int n){
