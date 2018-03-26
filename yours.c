@@ -67,7 +67,7 @@ double *Naive(int n, double* A, double *B){
         }
     }
     clock_gettime(CLOCK_REALTIME, &time_end);
-    printf("Time %llu s,%llu ns \t",time_end.tv_sec-time_start.tv_sec, time_end.tv_nsec-time_start.tv_nsec);
+    printf("Time %llu s,%llu ns \t",(long long unsigned)time_end.tv_sec-time_start.tv_sec, (long long unsigned)time_end.tv_nsec-time_start.tv_nsec);
     return a;        
 }
 
@@ -122,7 +122,7 @@ double *YoursBlocked(int n, double *A, double *B, int BLOCK_SIZE) {
     }
     
     clock_gettime(CLOCK_REALTIME, &time_end);
-    printf("Time %llu s,%llu ns \t",time_end.tv_sec-time_start.tv_sec, time_end.tv_nsec-time_start.tv_nsec);
+    printf("Time %llu s,%llu ns \t",(long long unsigned)time_end.tv_sec-time_start.tv_sec, (long long unsigned)time_end.tv_nsec-time_start.tv_nsec);
 // fill your code here, a is your output matrix
     return a;
 }
@@ -269,21 +269,6 @@ void MatSub(double* A, double *B, int n, int i_A, int j_A, int i_B, int j_B, int
     }
 }
 
-void MatAdd2(double* A, double *B, int n_i, int n_j, int i_A, int j_A, int i_B, int j_B, int A_stride, int B_stride){
-    for(int i=0; i < n_i; i++){
-        for(int j=0; j < n_j; j++){
-            A[(i_A+i)*A_stride+j_A+j] += B[(i_B+i)*B_stride+j_B+j];
-        }
-    }
-}
-
-void MatSub2(double* A, double *B, int n_i, int n_j, int i_A, int j_A, int i_B, int j_B, int A_stride, int B_stride){
-    for(int i=0; i < n_i; i++){
-        for(int j=0; j < n_j; j++){
-            A[(i_A+i)*A_stride+j_A+j] -= B[(i_B+i)*B_stride+j_B+j];
-        }
-    }
-}
 
 
 void StrassenRecursiveImpl(double *O, double* A, double*B, int n,  int i_A, int j_A, int i_B, int j_B, int A_stride, int B_stride, int O_stride, int b){
@@ -387,107 +372,11 @@ double *YoursRecursive(int n, double *A, double *B, int b){
     time_t end = clock();
 
     clock_gettime(CLOCK_REALTIME, &time_end);
-    printf("Time %llu s,%llu ns \t",time_end.tv_sec-time_start.tv_sec, time_end.tv_nsec-time_start.tv_nsec);
+    printf("Time %llu s,%llu ns \t",(long long unsigned)time_end.tv_sec-time_start.tv_sec, (long long unsigned)time_end.tv_nsec-time_start.tv_nsec);
     return r;    
 }
-void YoursRecursiveImpl(double* a, double *A, double *B, int n, int i, int j, int k, int stride, int b) {
-    // fill your code here, a is your output matrix
-    if( n > 64){
-        int new_n = n/2;
-        YoursRecursiveImpl(a, A, B, new_n, i, j, k, stride, b);
-        YoursRecursiveImpl(a, A, B, new_n, i, j, k + new_n, stride, b);
-        YoursRecursiveImpl(a, A, B, new_n, i + new_n, j, k, stride, b);
-        YoursRecursiveImpl(a, A, B, new_n, i + new_n, j, k + new_n, stride, b);
-        YoursRecursiveImpl(a, A, B, new_n, i, j + new_n, k, stride, b);
-        YoursRecursiveImpl(a, A, B, new_n, i, j + new_n, k + new_n, stride, b);
-        YoursRecursiveImpl(a, A, B, new_n, i + new_n, j + new_n, k, stride, b);
-        YoursRecursiveImpl(a, A, B, new_n, i + new_n, j + new_n, k + new_n, stride, b);
-    }else{
-        double sum = 0.0;
-        int i_stride = i*stride;
-        for(int i_ = i; i_ < i + n ; i_++){
-            
-            for(int j_ = j; j_ < j + n; j_++){
-                sum = 0.0;
-                for(int k_ = k; k_ < k + n; k_++){
-                    sum += A[i_stride + k_] * B[k_*stride + j_];
-                }
-                
-                a[i_stride + j_] += sum;
-            }
-            i_stride += stride;
-        }
-    }
-
-}
-double * YoursNaiveRecursive(int n, double* A, double *B, int b){
-    double *a;
-    int padLen = getPadLen(n, b);
-   
-    a = InitMatrix(padLen);
-    double *padA = PadMat(A, n, padLen-n);
-    double *padB = PadMat(B, n, padLen-n);
-    time_t start = clock();
-    YoursRecursiveImpl(a, padA, padB, padLen, 0, 0, 0, padLen, b);
-    double *r = InitMatrix(n);
-    for(int i=0;i<n;i++){
-        for(int j=0;j <n;j++){
-            r[i*n+j] = a[i*(padLen)+j];
-        }
-    }
-    time_t end = clock();
-    printf("Time :%f\t", (double)(end - start)/CLOCKS_PER_SEC);
-    return r;
-}
-
-int test(int block_size, int n){
-    double *A, *B;
-    A = generate(n);
-    B = generate(n);
-
-    double *Y;
-    Y = (double *) malloc(n * n * sizeof(double));
-    Y = generate(n);
-    Y = Naive(n,A,B);
-
-    if (check(Y, A, B, n))
-        printf("N TRUE%d\n", 1);
-    else
-        printf("N FALSE%d\n", 0);
-
-    Y = YoursBlocked(n,A,B, block_size);
-
-    if (check(Y, A, B, n))
-        printf("B TRUE%d\n", 1);
-    else
-        printf("B FALSE%d\n", 0);
-
-    Y = YoursRecursive(n, A, B, block_size);
-
-    if (check(Y, A, B, n))
-        printf("R TRUE%d\n", 1);
-    else
-        printf("R FALSE%d\n", 0);
 
 
-
-
-    free(A);
-    free(B);
-    free(Y);    
-    return 0;
-}
-// int main(int argc, char *argv[]){
-//     int block_sizes[] = {32, 64, 128, 150, 200};
-//     int ns[] = {1001,1007, 1023,1034,1046,1066,1088,1089};
-//     for(int i=0; i < 8;i++){
-//         for(int j =0;j < 5;j++){
-//             printf("B:%d,n:%d\n",block_sizes[j], ns[i]);
-//             test(block_sizes[j], ns[i]);
-//         }
-//     }
-//     return 0;
-// }
 int main(int argc, char *argv[]) {
     int BLOCK_SIZE = 128;
     srand((unsigned int) time(NULL));
