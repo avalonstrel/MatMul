@@ -15,6 +15,18 @@
 //double *Mult(double *A, double *B, int n)
 
 //the timer should be implemented in the YoursBlocked & YoursRecursive function and printed out in a format like "TIME: 0.000000 seconds"
+struct timespec diff(struct timespec start, struct timespec end){
+    struct timespec tmp;
+    if ((end.tv_nsec-start.tv_nsec)<0){
+        tmp.tv_sec = end.tv_sec-start.tv_sec-1;
+        tmp.tv_nsec = 1000000000+end.tv_nsec-start.tv_nsec;
+    }else{
+        tmp.tv_sec = end.tv_sec-start.tv_sec;
+        tmp.tv_nsec = end.tv_nsec-start.tv_nsec;
+    }
+    return tmp;
+}
+
 double * InitMatrix(int n){
     double * p = (double *) malloc(n * n * sizeof(double));
 
@@ -67,7 +79,8 @@ double *Naive(int n, double* A, double *B){
         }
     }
     clock_gettime(CLOCK_REALTIME, &time_end);
-    printf("Time %u.%u s \t",time_end.tv_sec-time_start.tv_sec, time_end.tv_nsec-time_start.tv_nsec);
+    struct timespec duration = diff(time_start, time_end);
+    printf("Time %lu.%lu s \t",duration.tv_sec, duration.tv_nsec);
     return a;        
 }
 
@@ -122,7 +135,8 @@ double *YoursBlocked(int n, double *A, double *B, int BLOCK_SIZE) {
     }
     
     clock_gettime(CLOCK_REALTIME, &time_end);
-    printf("Time :%u.%u s \t", time_end.tv_sec-time_start.tv_sec, time_end.tv_nsec-time_start.tv_nsec);
+    struct timespec duration = diff(time_start, time_end);
+    printf("Time %lu.%lu s \t",duration.tv_sec, duration.tv_nsec);
 // fill your code here, a is your output matrix
     return a;
 }
@@ -358,7 +372,8 @@ double *YoursRecursive(int n, double *A, double *B, int b){
     time_t end = clock();
 
     clock_gettime(CLOCK_REALTIME, &time_end);
-    printf("Time :%lu.%lu s \t", time_end.tv_sec-time_start.tv_sec, time_end.tv_nsec-time_start.tv_nsec);
+    struct timespec duration = diff(time_start, time_end);
+    printf("Time %lu.%lu s \t",duration.tv_sec, duration.tv_nsec);
     return r;    
 }
 int test(int block_size, int n){
