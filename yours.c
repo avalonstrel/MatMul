@@ -411,7 +411,7 @@ int test(int block_size, int n){
 }
 int main(int argc, char *argv[]) {
     for(int t=0;t<10;t++){
-        for(int i = 128; i <= 512; i+=64){
+        for(int i = 64; i <= 128; i+=64){
             for(int j = 1000; j < 1099; j += 20){
                 printf("block size: %d, matrix size %d\n",i, j);
                 test(i, j);
