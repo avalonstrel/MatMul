@@ -354,26 +354,27 @@ double *YoursRecursive(int n, double *A, double *B, int b){
     int padLen = getPadLen(n, b);
     a = InitMatrix(padLen);
     //printf("pad %d", padLen);
-
-    struct timespec time_start={0, 0}, time_end={0, 0};
-    clock_gettime(CLOCK_REALTIME, &time_start);
-   
-   
     
     double *padA = PadMat(A, n, padLen-n);
     double *padB = PadMat(B, n, padLen-n);
+
+    struct timespec time_start={0, 0}, time_end={0, 0};
+    clock_gettime(CLOCK_REALTIME, &time_start);
+
     StrassenRecursiveImpl(a, padA, padB, padLen,  0, 0, 0, 0, padLen, padLen, padLen, b);
+
+    time_t end = clock();
+
+    clock_gettime(CLOCK_REALTIME, &time_end);
+    struct timespec duration = diff(time_start, time_end);
+    printf("Time %lu.%lu s \t",duration.tv_sec, duration.tv_nsec);
+
     double *r = InitMatrix(n);
     for(int i=0;i<n;i++){
         for(int j=0;j <n;j++){
             r[i*n+j] = a[i*(padLen)+j];
         }
     }
-    time_t end = clock();
-
-    clock_gettime(CLOCK_REALTIME, &time_end);
-    struct timespec duration = diff(time_start, time_end);
-    printf("Time %lu.%lu s \t",duration.tv_sec, duration.tv_nsec);
     return r;    
 }
 int test(int block_size, int n){
@@ -412,7 +413,7 @@ int test(int block_size, int n){
 
 int main(int argc, char *argv[]) {
     for(int t=0;t<10;t++){
-        for(int i = 128; i <= 192; i+=16){
+        for(int i = 64; i <= 156; i+=16){
             for(int j = 1000; j < 1099; j += 20){
                 printf("block size: %d, matrix size %d\n",i, j);
                 test(i, j);
