@@ -27,7 +27,7 @@ struct timespec diff(struct timespec start, struct timespec end){
     return tmp;
 }
 
-double * InitMatrix(int n){
+double *InitMatrix(int n){
     double * p = (double *) malloc(n * n * sizeof(double));
 
     for(int i=0;i < n*n; i++){
@@ -377,6 +377,7 @@ double *YoursRecursive(int n, double *A, double *B, int b){
     }
     return r;    
 }
+
 int test(int block_size, int n){
 
     double *A, *B;
@@ -411,61 +412,47 @@ int test(int block_size, int n){
 
 }
 
-int main(int argc, char *argv[]) {
-    for(int t=0;t<10;t++){
-        for(int i = 144; i <= 256; i+=16){
-            for(int j = 1000; j < 1099; j += 20){
-                printf("block size: %d, matrix size %d\n",i, j);
-                test(i, j);
-                printf("\n");
-            }
-        }
-    }
-    return 0;
-}
-
 // int main(int argc, char *argv[]) {
-//     int BLOCK_SIZE = 128;
-//     srand((unsigned int) time(NULL));
-//     int n = atoi(argv[1]);
-//     double *A, *B;
-//     A = generate(n);
-//     B = generate(n);
-
-//     double *Y;
-//     Y = (double *) malloc(n * n * sizeof(double));
-//     Y = generate(n);
-//     // Y = Naive(n,A,B);
-
-//     // if (check(Y, A, B, n))
-//     //     printf("N TRUE%d\n", 1);
-//     // else
-//     //     printf("N FALSE%d\n", 0);
-
-//     Y = YoursBlocked(n, A, B, BLOCK_SIZE);
-
-//     if (check(Y, A, B, n))
-//         printf("B TRUE%d\n", 1);
-//     else
-//         printf("B FALSE%d\n", 0);
-
-//     // Y = YoursRecursive(n, A, B);
-//     // if (check(Y, A, B, n))
-//     //     printf("R TRUE%d\n", 1);
-//     // else
-//     //     printf("R FALSE%d\n", 0);
-
-//     Y = YoursRecursive(n, A, B, BLOCK_SIZE);
-
-//     if (check(Y, A, B, n))
-//         printf("R TRUE%d\n", 1);
-//     else
-//         printf("R FALSE%d\n", 0);
-
-
-
-
-//     free(A);
-//     free(B);
-//     free(Y);
+//     for(int t=0;t<10;t++){
+//         for(int i = 144; i <= 256; i+=16){
+//             for(int j = 1000; j < 1099; j += 20){
+//                 printf("block size: %d, matrix size %d\n",i, j);
+//                 test(i, j);
+//                 printf("\n");
+//             }
+//         }
+//     }
+//     return 0;
 // }
+
+int main(int argc, char *argv[]) {
+    int BLOCK_SIZE = 192;
+    srand((unsigned int) time(NULL));
+    int n = atoi(argv[1]);
+    double *A, *B;
+    A = generate(n);
+    B = generate(n);
+
+    double *Y;
+    Y = (double *) malloc(n * n * sizeof(double));
+    Y = generate(n);
+
+    Y = YoursBlocked(n, A, B, BLOCK_SIZE);
+
+    if (check(Y, A, B, n))
+        printf("B TRUE%d\n", 1);
+    else
+        printf("B FALSE%d\n", 0);
+
+    Y = YoursRecursive(n, A, B, BLOCK_SIZE);
+
+    if (check(Y, A, B, n))
+        printf("R TRUE%d\n", 1);
+    else
+        printf("R FALSE%d\n", 0);
+
+
+    free(A);
+    free(B);
+    free(Y);
+}
